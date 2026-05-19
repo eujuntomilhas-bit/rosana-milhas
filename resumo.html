@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resumo da Aula — Rosana Pestana</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabriela&family=Caveat:wght@400;600&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --verde-musgo:  #4F6F52;
+      --verde-salvia: #8FAF9A;
+      --terracota:    #D97A3A;
+      --ambar:        #E6A15A;
+      --offwhite:     #F4F1EC;
+      --texto:        #1e1e1e;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--offwhite);
+      color: var(--texto);
+      font-family: 'Roboto', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 24px;
+    }
+
+    header { text-align: center; margin-bottom: 48px; }
+
+    .tag {
+      display: inline-block;
+      background: var(--terracota);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-family: 'Gabriela', serif;
+      font-size: 2rem;
+      color: var(--verde-musgo);
+      margin-bottom: 6px;
+    }
+
+    header p {
+      font-family: 'Caveat', cursive;
+      font-size: 1.1rem;
+      color: #7a9a7e;
+    }
+
+    .container { width: 100%; max-width: 680px; display: flex; flex-direction: column; gap: 28px; }
+
+    .secao-titulo {
+      font-family: 'Caveat', cursive;
+      font-size: 1.15rem;
+      color: var(--terracota);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .secao-titulo::after { content: ''; flex: 1; height: 1px; background: rgba(217,122,58,0.25); }
+
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 24px 28px;
+      box-shadow: 0 2px 8px rgba(79,111,82,0.07);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .perfil-item {
+      display: flex;
+      gap: 10px;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .perfil-item::before {
+      content: '·';
+      color: var(--terracota);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.87rem;
+    }
+
+    th {
+      text-align: left;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--verde-salvia);
+      padding: 0 0 10px 0;
+      border-bottom: 1px solid #f0ece6;
+    }
+
+    td {
+      padding: 10px 0;
+      border-bottom: 1px solid #f0ece6;
+      vertical-align: top;
+      line-height: 1.5;
+    }
+
+    td:first-child {
+      font-weight: 500;
+      color: var(--verde-musgo);
+      width: 35%;
+      padding-right: 16px;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    .conceito {
+      font-size: 0.87rem;
+      line-height: 1.6;
+      color: var(--texto);
+    }
+
+    .conceito strong { color: var(--verde-musgo); }
+
+    .oportunidade {
+      display: flex;
+      gap: 10px;
+      font-size: 0.87rem;
+      line-height: 1.5;
+      padding: 12px 16px;
+      background: rgba(79,111,82,0.06);
+      border-radius: 10px;
+      border-left: 3px solid var(--verde-salvia);
+    }
+
+    .reuniao-box {
+      background: rgba(217,122,58,0.08);
+      border-radius: 12px;
+      padding: 20px 24px;
+      border-left: 3px solid var(--terracota);
+    }
+
+    .reuniao-data {
+      font-family: 'Gabriela', serif;
+      font-size: 1.1rem;
+      color: var(--terracota);
+      margin-bottom: 8px;
+    }
+
+    .reuniao-desc {
+      font-size: 0.87rem;
+      color: #6a8a6e;
+      line-height: 1.6;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fff;
+      border: 2px solid transparent;
+      border-radius: 12px;
+      padding: 12px 20px;
+      text-decoration: none;
+      font-size: 0.87rem;
+      font-weight: 500;
+      color: var(--verde-musgo);
+      box-shadow: 0 2px 8px rgba(79,111,82,0.07);
+      transition: border-color 0.2s;
+      flex: 1;
+      min-width: 200px;
+      justify-content: center;
+    }
+
+    .nav-link:hover { border-color: var(--terracota); }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Caveat', cursive;
+      font-size: 1rem;
+      color: var(--verde-salvia);
+      text-decoration: none;
+      margin-bottom: 32px;
+      align-self: flex-start;
+    }
+
+    .back:hover { color: var(--verde-musgo); }
+
+    footer {
+      margin-top: 56px;
+      font-family: 'Caveat', cursive;
+      font-size: 1rem;
+      color: #b5c9b8;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div style="width:100%;max-width:680px">
+    <a class="back" href="index.html">← voltar ao início</a>
+  </div>
+
+  <header>
+    <div class="tag">Resumo da Aula · 19 de maio de 2026</div>
+    <h1>Rosana Pestana</h1>
+    <p>Executivo: Leonardo · Instrutora: Bruna Araújo</p>
+  </header>
+
+  <div class="container">
+
+    <!-- PERFIL -->
+    <div>
+      <div class="secao-titulo">Perfil do Executivo — Leonardo</div>
+      <div class="card">
+        <div class="perfil-item">Viaja <strong>2x/mês para Orlando</strong> (filho em intercâmbio) — rota SSA-GRU-MCO</div>
+        <div class="perfil-item">Gasto pessoal estimado: <strong>R$ 100–200 mil/mês</strong> no cartão</div>
+        <div class="perfil-item">Empresa (C3) gasta <strong>R$ 90 mil/mês em passagens</strong> sem acumular milhas</div>
+        <div class="perfil-item"><strong>389 mil pontos Latam Pass</strong>, categoria Black — faltam 22.817 pontos qualificáveis para manter status</div>
+        <div class="perfil-item">Recém-adquiriu o <strong>Centurion Amex Bradesco</strong> (anuidade R$ 25 mil/ano)</div>
+        <div class="perfil-item">Próxima viagem: <strong>Jalapão — junho</strong> (será case prático da consultoria)</div>
+      </div>
+    </div>
+
+    <!-- DECISÕES -->
+    <div>
+      <div class="secao-titulo">Principais Decisões da Aula</div>
+      <div class="card">
+        <table>
+          <tr><th>Tema</th><th>Decisão</th></tr>
+          <tr><td>Centurion</td><td>Confirmar com Bradesco se pontos vão para <strong>Membership Rewards</strong> (correto) ou Livelo (incorreto para este cartão)</td></tr>
+          <tr><td>Rota Orlando</td><td>Avaliar SSA-REC-MCO (Gol/Azul) como alternativa mais eficiente ao trajeto via Guarulhos</td></tr>
+          <tr><td>Upgrade</td><td>Tentar upgrade na <strong>volta</strong> (MCO-GRU) via lance ou pagamento direto</td></tr>
+          <tr><td>Cartão corporativo</td><td>Migrar para <strong>Santander</strong> (→ Iberia) ou <strong>Caixa</strong> (→ TAP) para acumular pontos no CPF dos sócios</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- CONCEITOS -->
+    <div>
+      <div class="secao-titulo">Conceitos Explicados na Aula</div>
+      <div class="card">
+        <div class="conceito"><strong>4 formas de acumular:</strong> cartão de crédito · parceiros (Livelo/Esfera) · voando · comprando milhas</div>
+        <div class="conceito"><strong>Pontos qualificáveis vs resgatáveis:</strong> qualificáveis determinam sua categoria e vêm só de voos — Leonardo precisa de mais 22.817 para manter Black</div>
+        <div class="conceito"><strong>Latam "slow layer":</strong> queda gradual de categoria (Black → Platinum → Gold), não vai a zero direto</div>
+        <div class="conceito"><strong>Estratégia de destino:</strong> Destino → Companhia → Programa → Cartão que transfere</div>
+        <div class="conceito"><strong>Membership Rewards</strong> transfere sem deságio para: Delta, Air France, Emirates, Singapore, Iberia, TAP, Copa — e também Latam, Gol e Azul</div>
+        <div class="conceito"><strong>Revolut:</strong> conta internacional no débito que acumula pontos e evita IOF (3,38%) em compras no exterior</div>
+      </div>
+    </div>
+
+    <!-- OPORTUNIDADES -->
+    <div>
+      <div class="secao-titulo">Oportunidades Identificadas</div>
+      <div class="card">
+        <div class="oportunidade">Voo de ida de Leonardo foi alterado (atraso >30 min) → pode mudar sem custo</div>
+        <div class="oportunidade">Esposa e filho não têm cadastros em nenhum programa → perda de acúmulo que pode ser recuperada agora</div>
+        <div class="oportunidade">Funcionários da Embraer acumulam milhas no CPF pessoal via cartão corporativo → modelo aplicável para C3 com banco adequado</div>
+        <div class="oportunidade">Accor (Mercury, Ibis, Mercure) para acúmulo de pontos em hospedagens de Leonardo</div>
+      </div>
+    </div>
+
+    <!-- PRÓXIMA REUNIÃO -->
+    <div>
+      <div class="secao-titulo">Próxima Reunião</div>
+      <div class="reuniao-box">
+        <div class="reuniao-data">Terça-feira, 27 de maio · 16h30</div>
+        <div class="reuniao-desc">Rosana deve chegar com: informações coletadas com Leonardo, cadastros iniciais feitos, materiais assistidos e situação do Centurion confirmada com o Bradesco.</div>
+      </div>
+    </div>
+
+    <!-- NAVEGAÇÃO -->
+    <div>
+      <div class="secao-titulo">Ver também</div>
+      <div class="nav-links">
+        <a class="nav-link" href="checklist.html">☑ Checklist de Tarefas</a>
+        <a class="nav-link" href="index.html">← Página Inicial</a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>Gestora de Milhas Executivas™ · by Bruna Araújo · @eujuntomilhas</footer>
+
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checklist — Rosana Pestana</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabriela&family=Caveat:wght@400;600&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --verde-musgo:  #4F6F52;
+      --verde-salvia: #8FAF9A;
+      --terracota:    #D97A3A;
+      --ambar:        #E6A15A;
+      --offwhite:     #F4F1EC;
+      --texto:        #1e1e1e;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--offwhite);
+      color: var(--texto);
+      font-family: 'Roboto', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 24px;
+    }
+
+    header { text-align: center; margin-bottom: 48px; }
+
+    .tag {
+      display: inline-block;
+      background: var(--terracota);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-family: 'Gabriela', serif;
+      font-size: 2rem;
+      color: var(--verde-musgo);
+      margin-bottom: 6px;
+    }
+
+    header p {
+      font-family: 'Caveat', cursive;
+      font-size: 1.1rem;
+      color: #7a9a7e;
+    }
+
+    .progresso-wrap {
+      width: 100%;
+      max-width: 680px;
+      margin-bottom: 40px;
+    }
+
+    .progresso-label {
+      font-family: 'Caveat', cursive;
+      font-size: 1rem;
+      color: var(--terracota);
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .progresso-barra {
+      height: 8px;
+      background: #e8e4de;
+      border-radius: 100px;
+      overflow: hidden;
+    }
+
+    .progresso-fill {
+      height: 100%;
+      background: var(--terracota);
+      border-radius: 100px;
+      transition: width 0.4s ease;
+    }
+
+    .container { width: 100%; max-width: 680px; display: flex; flex-direction: column; gap: 28px; }
+
+    .secao-titulo {
+      font-family: 'Caveat', cursive;
+      font-size: 1.15rem;
+      color: var(--terracota);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .secao-titulo::after { content: ''; flex: 1; height: 1px; background: rgba(217,122,58,0.25); }
+
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: 0 2px 8px rgba(79,111,82,0.07);
+    }
+
+    .item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .item input[type="checkbox"] { display: none; }
+
+    .check-box {
+      width: 20px;
+      height: 20px;
+      min-width: 20px;
+      border: 2px solid var(--verde-salvia);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .check-box svg { display: none; }
+
+    .item.done .check-box {
+      background: var(--verde-musgo);
+      border-color: var(--verde-musgo);
+    }
+
+    .item.done .check-box svg { display: block; }
+
+    .item-texto {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--texto);
+      transition: opacity 0.2s;
+    }
+
+    .item.done .item-texto {
+      opacity: 0.4;
+      text-decoration: line-through;
+    }
+
+    .data-reuniao {
+      display: inline-block;
+      background: rgba(230,161,90,0.15);
+      color: var(--ambar);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 2px 10px;
+      border-radius: 100px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Caveat', cursive;
+      font-size: 1rem;
+      color: var(--verde-salvia);
+      text-decoration: none;
+      margin-bottom: 32px;
+      align-self: flex-start;
+    }
+
+    .back:hover { color: var(--verde-musgo); }
+
+    footer {
+      margin-top: 56px;
+      font-family: 'Caveat', cursive;
+      font-size: 1rem;
+      color: #b5c9b8;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div style="width:100%;max-width:680px">
+    <a class="back" href="index.html">← voltar ao início</a>
+  </div>
+
+  <header>
+    <div class="tag">Acompanhamento da Aluna</div>
+    <h1>Rosana Pestana</h1>
+    <p>Tarefas e próximos passos · atualizado em 19/05/2026</p>
+  </header>
+
+  <div class="progresso-wrap">
+    <div class="progresso-label">
+      <span>Progresso geral</span>
+      <span id="contador">0 de 0 concluídas</span>
+    </div>
+    <div class="progresso-barra">
+      <div class="progresso-fill" id="barra" style="width:0%"></div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- CADASTROS -->
+    <div>
+      <div class="secao-titulo">Cadastros e Configurações</div>
+      <div class="card">
+        <label class="item"><input type="checkbox"><div class="check-box"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="item-texto">Criar sistema de e-mail padronizado para todos os cadastros de programas de fidelidade</div></label>
+        <label class="item"><input type="checkbox"><div class="check-box"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="item-texto">Cadastrar em todos os programas usando os links fornecidos pela Bruna (Iberia, TAP, etc.) — usar <strong>nome exato do passaporte</strong></div></label>
+        <label class="item"><input type="checkbox"><div class="check-box"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="item-texto">Cadastrar <strong>esposa de Leonardo</strong> nos programas aéreos</div></label>
+        <label class="item"><input type="checkbox"><div class="check-box"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="item-texto">Cadastrar <strong>Leonardo</strong> nos programas de hotel (Accor e similares)</div></label>
+        <label class="item"><input type="checkbox"><div class="check-box"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="item-texto">Alinhar com Leonardo sobre mudança de e-mail nos cadastros existentes</div></label>
+        <label class="item"><input type="checkbox"><div class="check-box"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="item-texto">Resolver acesso ao Livelo (não conseguiu acessar na aula)</div></label>
+      </div>
+    </div>
+
+    <!-- AÇÕES IMEDIATAS -->
+    <div>
+      <div class="secao-titulo">Ações Imediatas</div>
+      <div class="card">
+        <label class="item"><input type="checkbox"><div class="check-box"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="item-texto">Assistir material <strong>Milhas no Pix</strong> (acúmulo via parceiros Livelo/Esfera)</div></label>
+        <label class="item"><input type="checkbox"><div class="check-box"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="item-texto">Baixar app <strong>Octopus</strong> (campanhas de compra de milhas)</div></label>
+        <label class="item"><input type="checkbox"><div class="check-box"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="item-texto">Contatar <strong>gestora Bradesco</strong> para confirmar direcionamento dos pontos do Centurion (Membership Rewards ou Livelo?)</div></label>
+        <label class="item"><input type="checkbox"><div class="check-box"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="item-texto">Validar saldos de milhas de Leonardo em <strong>todos os programas</strong></div></label>
+      </div>
+    </div>
+
+    <!-- COLETA COM LEONARDO -->
+    <div>
+      <div class="secao-titulo">Coleta de Informações com Leonardo <span class="data-reuniao">antes de 27/05</span></div>
+      <div class="card">
+        <label class="item"><input type="checkbox"><div class="check-box"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="item-texto">Levantar destinos mais frequentes no ano (além de Orlando)</div></label>
+        <label class="item"><input type="checkbox"><div class="check-box"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="item-texto">Confirmar média de gastos mensais no cartão (pessoal e empresa)</div></label>
+        <label class="item"><input type="checkbox"><div class="check-box"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="item-texto">Coletar histórico de voos dos últimos 8 meses (Leonardo, esposa e filho)</div></label>
+        <label class="item"><input type="checkbox"><div class="check-box"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="item-texto">Entender motivação real para o Centurion (status, milhas ou benefícios?)</div></label>
+        <label class="item"><input type="checkbox"><div class="check-box"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="item-texto">Levantar valores de anuidade pagos em todos os cartões atuais</div></label>
+        <label class="item"><input type="checkbox"><div class="check-box"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="item-texto">Confirmar flexibilidade para mudanças de rota (ex: SSA-REC-MCO em vez de SSA-GRU-MCO)</div></label>
+        <label class="item"><input type="checkbox"><div class="check-box"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="item-texto">Obter <strong>datas da viagem ao Jalapão (junho)</strong> antes de emitir — será case prático</div></label>
+      </div>
+    </div>
+
+    <!-- CARTÃO CORPORATIVO -->
+    <div>
+      <div class="secao-titulo">Cartão Corporativo</div>
+      <div class="card">
+        <label class="item"><input type="checkbox"><div class="check-box"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="item-texto">Investigar possibilidade de cartão corporativo com acúmulo de pontos no CPF dos sócios</div></label>
+        <label class="item"><input type="checkbox"><div class="check-box"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="item-texto">Coordenar com gestor financeiro sobre migração para <strong>Santander</strong> (transfere para Iberia) ou <strong>Caixa</strong> (transfere para TAP)</div></label>
+        <label class="item"><input type="checkbox"><div class="check-box"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="item-texto">Confirmar situação atual do cartão Vexpense dos funcionários</div></label>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>Gestora de Milhas Executivas™ · by Bruna Araújo · @eujuntomilhas</footer>
+
+  <script>
+    const STORAGE_KEY = 'checklist-rosana-v1';
+
+    function salvar() {
+      const estado = [];
+      document.querySelectorAll('.item input[type="checkbox"]').forEach((cb, i) => {
+        estado[i] = cb.checked;
+      });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(estado));
+    }
+
+    function atualizar() {
+      const itens = document.querySelectorAll('.item');
+      const total = itens.length;
+      let feitos = 0;
+      itens.forEach(item => {
+        if (item.classList.contains('done')) feitos++;
+      });
+      document.getElementById('contador').textContent = `${feitos} de ${total} concluídas`;
+      document.getElementById('barra').style.width = `${(feitos / total) * 100}%`;
+    }
+
+    function carregar() {
+      const salvo = localStorage.getItem(STORAGE_KEY);
+      if (!salvo) return;
+      const estado = JSON.parse(salvo);
+      document.querySelectorAll('.item input[type="checkbox"]').forEach((cb, i) => {
+        if (estado[i]) {
+          cb.checked = true;
+          cb.closest('.item').classList.add('done');
+        }
+      });
+    }
+
+    document.querySelectorAll('.item').forEach(item => {
+      item.addEventListener('click', () => {
+        const cb = item.querySelector('input[type="checkbox"]');
+        cb.checked = !cb.checked;
+        item.classList.toggle('done', cb.checked);
+        salvar();
+        atualizar();
+      });
+    });
+
+    carregar();
+    atualizar();
+  </script>
+
+</body>
+</html>

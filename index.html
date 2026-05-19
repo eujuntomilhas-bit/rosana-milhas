@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rosana Pestana · Gestora de Milhas Executivas™</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabriela&family=Caveat:wght@400;600&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --verde-musgo:  #4F6F52;
+      --verde-salvia: #8FAF9A;
+      --terracota:    #D97A3A;
+      --ambar:        #E6A15A;
+      --offwhite:     #F4F1EC;
+      --texto:        #1e1e1e;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--offwhite);
+      color: var(--texto);
+      font-family: 'Roboto', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 24px;
+    }
+
+    header { text-align: center; margin-bottom: 56px; }
+
+    .tag {
+      display: inline-block;
+      background: var(--terracota);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-family: 'Gabriela', serif;
+      font-size: 2.2rem;
+      color: var(--verde-musgo);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      font-family: 'Caveat', cursive;
+      font-size: 1.1rem;
+      color: #7a9a7e;
+    }
+
+    .fases { width: 100%; max-width: 680px; display: flex; flex-direction: column; gap: 32px; }
+
+    .fase-titulo {
+      font-family: 'Caveat', cursive;
+      font-size: 1.15rem;
+      color: var(--terracota);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .fase-titulo::after { content: ''; flex: 1; height: 1px; background: rgba(217,122,58,0.25); }
+
+    .apoio-titulo {
+      font-family: 'Caveat', cursive;
+      font-size: 1.15rem;
+      color: var(--verde-musgo);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0.7;
+    }
+
+    .apoio-titulo::after { content: ''; flex: 1; height: 1px; background: rgba(79,111,82,0.2); }
+
+    .aulas { display: flex; flex-direction: column; gap: 12px; }
+
+    .aula {
+      background: #fff;
+      border-radius: 16px;
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-decoration: none;
+      border: 2px solid transparent;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(79,111,82,0.07);
+    }
+
+    .aula:hover {
+      border-color: var(--terracota);
+      box-shadow: 0 4px 20px rgba(217,122,58,0.15);
+    }
+
+    .aula-info { flex: 1; }
+
+    .aula-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--terracota);
+      margin-bottom: 4px;
+    }
+
+    .aula-titulo {
+      font-family: 'Gabriela', serif;
+      font-size: 1.1rem;
+      color: var(--verde-musgo);
+      margin-bottom: 3px;
+    }
+
+    .aula-desc { font-size: 0.8rem; color: #9ab09e; }
+
+    .aula-arrow { font-size: 1.2rem; color: var(--terracota); margin-left: 20px; opacity: 0.7; }
+
+    .aula.em-breve {
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .pill-breve {
+      display: inline-block;
+      background: #e8e4de;
+      color: #9ab09e;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 100px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    .pill-novo {
+      display: inline-block;
+      background: rgba(217,122,58,0.15);
+      color: var(--terracota);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 100px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    footer {
+      margin-top: 56px;
+      font-size: 0.78rem;
+      color: #b5c9b8;
+      text-align: center;
+      font-family: 'Caveat', cursive;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="tag">Programa Gestora de Milhas Executivas™</div>
+    <h1>Rosana Pestana</h1>
+    <p>by Bruna Araújo · @eujuntomilhas</p>
+  </header>
+
+  <div class="fases">
+
+    <!-- ACOMPANHAMENTO -->
+    <div>
+      <div class="fase-titulo">Meu Acompanhamento</div>
+      <div class="aulas">
+
+        <a class="aula" href="checklist.html">
+          <div class="aula-info">
+            <div class="aula-num">Tarefas <span class="pill-novo">Novo</span></div>
+            <div class="aula-titulo">Checklist de Próximos Passos</div>
+            <div class="aula-desc">Cadastros · ações imediatas · coleta com Leonardo · reunião 27/05</div>
+          </div>
+          <div class="aula-arrow">→</div>
+        </a>
+
+        <a class="aula" href="resumo.html">
+          <div class="aula-info">
+            <div class="aula-num">Resumo · Aula 19/05/2026</div>
+            <div class="aula-titulo">O que vimos na última reunião</div>
+            <div class="aula-desc">Executivo Leonardo · decisões · conceitos · oportunidades identificadas</div>
+          </div>
+          <div class="aula-arrow">→</div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- FASE 1 -->
+    <div>
+      <div class="fase-titulo">Fase 1 — Fundação</div>
+      <div class="aulas">
+
+        <a class="aula" href="https://eujuntomilhas-bit.github.io/gestora-milhas-executivas/preview_aula01.html">
+          <div class="aula-info">
+            <div class="aula-num">Aula 1</div>
+            <div class="aula-titulo">Ecossistema de Milhas</div>
+            <div class="aula-desc">Os programas que você precisa conhecer · milhas vs. pontos · ciclo completo</div>
+          </div>
+          <div class="aula-arrow">→</div>
+        </a>
+
+        <a class="aula" href="https://eujuntomilhas-bit.github.io/gestora-milhas-executivas/02%20-%20Planos%20de%20Aula/Fase%201%20-%20Fundacao/AULA_02_Como_Acumular_Slides.html">
+          <div class="aula-info">
+            <div class="aula-num">Aula 2</div>
+            <div class="aula-titulo">Como Acumular Milhas e Pontos</div>
+            <div class="aula-desc">As 4 formas de acumular · parceiros de transferência · CPP por milheiro</div>
+          </div>
+          <div class="aula-arrow">→</div>
+        </a>
+
+        <div class="aula em-breve">
+          <div class="aula-info">
+            <div class="aula-num">Aula 3 <span class="pill-breve">Em breve</span></div>
+            <div class="aula-titulo">Tabela de Resgate na Prática</div>
+            <div class="aula-desc">Como ler tabelas · sweet spots · comparar programas</div>
+          </div>
+          <div class="aula-arrow">→</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- FASE 2 -->
+    <div>
+      <div class="fase-titulo">Fase 2 — Estratégia</div>
+      <div class="aulas">
+
+        <div class="aula em-breve">
+          <div class="aula-info">
+            <div class="aula-num">Aula 4 <span class="pill-breve">Em breve</span></div>
+            <div class="aula-titulo">Mapeamento do Perfil do Executivo</div>
+            <div class="aula-desc">Destinos · preferências · padrão de viagem · oportunidades</div>
+          </div>
+          <div class="aula-arrow">→</div>
+        </div>
+
+        <div class="aula em-breve">
+          <div class="aula-info">
+            <div class="aula-num">Aula 5 <span class="pill-breve">Em breve</span></div>
+            <div class="aula-titulo">Cartões Premium Comparados</div>
+            <div class="aula-desc">Centurion · Infinite · Platinum · qual indica para cada perfil</div>
+          </div>
+          <div class="aula-arrow">→</div>
+        </div>
+
+        <div class="aula em-breve">
+          <div class="aula-info">
+            <div class="aula-num">Aula 6 <span class="pill-breve">Em breve</span></div>
+            <div class="aula-titulo">Estratégia de Acúmulo e Benefícios</div>
+            <div class="aula-desc">Montar o setup ideal · salas VIP · upgrades · benefícios escondidos</div>
+          </div>
+          <div class="aula-arrow">→</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- FASE 3 -->
+    <div>
+      <div class="fase-titulo">Fase 3 — Operação</div>
+      <div class="aulas">
+
+        <div class="aula em-breve">
+          <div class="aula-info">
+            <div class="aula-num">Aula 7 <span class="pill-breve">Em breve</span></div>
+            <div class="aula-titulo">Monitoramento e Transferências</div>
+            <div class="aula-desc">Rotina mensal · quando transferir · ferramentas de acompanhamento</div>
+          </div>
+          <div class="aula-arrow">→</div>
+        </div>
+
+        <div class="aula em-breve">
+          <div class="aula-info">
+            <div class="aula-num">Aula 8 <span class="pill-breve">Em breve</span></div>
+            <div class="aula-titulo">Busca e Emissão na Prática</div>
+            <div class="aula-desc">Encontrar disponibilidade · emitir passo a passo · ferramentas</div>
+          </div>
+          <div class="aula-arrow">→</div>
+        </div>
+
+        <div class="aula em-breve">
+          <div class="aula-info">
+            <div class="aula-num">Aula 9 <span class="pill-breve">Em breve</span></div>
+            <div class="aula-titulo">Rotina de Gestão e Reporte</div>
+            <div class="aula-desc">Relatório mensal · apresentar resultados · fidelizar o cliente</div>
+          </div>
+          <div class="aula-arrow">→</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- MATERIAIS DE APOIO -->
+    <div>
+      <div class="apoio-titulo">Materiais de Apoio</div>
+      <div class="aulas">
+
+        <a class="aula" href="https://eujuntomilhas-bit.github.io/gestora-milhas-executivas/03%20-%20Templates%20e%20Ferramentas/GUIA_Cadastro_Programas_de_Fidelidade.html">
+          <div class="aula-info">
+            <div class="aula-num">Guia</div>
+            <div class="aula-titulo">Cadastro nos Programas de Fidelidade</div>
+            <div class="aula-desc">Links diretos para cadastro em 16 programas nacionais e internacionais</div>
+          </div>
+          <div class="aula-arrow">→</div>
+        </a>
+
+      </div>
+    </div>
+
+  </div>
+
+  <footer>Gestora de Milhas Executivas™ · by Bruna Araújo · @eujuntomilhas</footer>
+
+</body>
+</html>
