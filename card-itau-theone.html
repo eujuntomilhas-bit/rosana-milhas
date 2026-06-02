@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Itaú The One · Benefícios · Rosana Pestana</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabriela&family=Caveat:wght@400;600&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --verde-musgo:  #4F6F52;
+      --verde-salvia: #8FAF9A;
+      --terracota:    #D97A3A;
+      --ambar:        #E6A15A;
+      --offwhite:     #F4F1EC;
+      --texto:        #1e1e1e;
+      --ouro:         #C9A84C;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--offwhite);
+      color: var(--texto);
+      font-family: 'Roboto', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 48px 24px 80px;
+    }
+
+    .voltar {
+      align-self: flex-start;
+      max-width: 760px;
+      width: 100%;
+      margin: 0 auto 36px;
+    }
+    .voltar a {
+      font-size: 0.82rem;
+      color: var(--verde-musgo);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    .voltar a:hover { opacity: 1; }
+
+    .conteudo {
+      width: 100%;
+      max-width: 760px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* ── CARD PRINCIPAL ── */
+    .card-principal {
+      background: #fff;
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+    }
+
+    .card-header {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .cartao-num-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      background: var(--texto);
+      color: #fff;
+      border-radius: 12px;
+      font-family: 'Gabriela', serif;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .card-info { flex: 1; min-width: 200px; }
+
+    .card-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      background: var(--texto);
+      color: #fff;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .card-nome {
+      font-family: 'Gabriela', serif;
+      font-size: 1.25rem;
+      color: var(--texto);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .estrelas { color: var(--ouro); font-size: 1rem; margin-bottom: 4px; letter-spacing: 2px; }
+    .score { font-size: 0.82rem; color: #9ab09e; }
+
+    /* ── FICHA ── */
+    .ficha {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(0,0,0,0.06);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .ficha-item { background: var(--offwhite); padding: 14px 16px; }
+    .ficha-label { font-size: 0.72rem; font-weight: 700; color: #9ab09e; margin-bottom: 4px; }
+    .ficha-valor { font-size: 0.85rem; font-weight: 700; color: var(--texto); line-height: 1.3; }
+
+    /* ── ACORDEÃO ── */
+    .acordeao {
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+
+    .acordeao-btn {
+      width: 100%;
+      background: #fff;
+      border: none;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-family: 'Roboto', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--texto);
+      transition: background 0.15s;
+    }
+
+    .acordeao-btn:hover { background: var(--offwhite); }
+
+    .acordeao-icon {
+      font-size: 1.3rem;
+      color: var(--verde-musgo);
+      transition: transform 0.25s;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .acordeao-btn.aberto .acordeao-icon { transform: rotate(45deg); }
+
+    .acordeao-corpo { display: none; padding: 0 20px 20px; background: #fff; }
+    .acordeao-corpo.aberto { display: block; }
+
+    /* ── CONTEÚDO ── */
+    .sec-titulo {
+      font-family: 'Caveat', cursive;
+      font-size: 1.05rem;
+      color: var(--terracota);
+      margin: 20px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sec-titulo::after { content: ''; flex: 1; height: 1px; background: rgba(217,122,58,0.2); }
+
+    .pontuacao-grid {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 4px;
+    }
+
+    .pont-item {
+      background: var(--offwhite);
+      border-radius: 10px;
+      padding: 12px 18px;
+      flex: 1;
+      min-width: 130px;
+      text-align: center;
+    }
+
+    .pont-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #9ab09e; margin-bottom: 6px; }
+    .pont-valor { font-family: 'Gabriela', serif; font-size: 1.5rem; color: var(--terracota); }
+    .pont-desc { font-size: 0.72rem; color: #9ab09e; }
+
+    .info-lista { display: flex; flex-direction: column; gap: 8px; margin-bottom: 4px; }
+
+    .info-row { display: flex; align-items: flex-start; gap: 10px; font-size: 0.86rem; line-height: 1.5; }
+    .info-row .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--terracota); flex-shrink: 0; margin-top: 6px; }
+    .info-row .info-text { color: #3a3a3a; }
+    .info-row .info-label { font-weight: 700; color: var(--texto); margin-right: 4px; }
+
+    .sala-item { background: var(--offwhite); border-radius: 10px; padding: 12px 16px; margin-bottom: 8px; }
+    .sala-nome { font-weight: 700; font-size: 0.88rem; color: var(--texto); margin-bottom: 3px; }
+    .sala-desc { font-size: 0.8rem; color: #5a5a5a; line-height: 1.5; }
+
+    .ficha-detalhe { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 4px; }
+    .fd-item { background: var(--offwhite); border-radius: 10px; padding: 12px 16px; }
+    .fd-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: #9ab09e; margin-bottom: 4px; }
+    .fd-valor { font-size: 0.86rem; font-weight: 600; color: var(--texto); line-height: 1.4; }
+
+    .destaque-box {
+      background: rgba(217,122,58,0.07);
+      border-left: 3px solid var(--terracota);
+      border-radius: 0 10px 10px 0;
+      padding: 12px 16px;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: #3a3a3a;
+      margin: 8px 0;
+    }
+
+    .beneficio-bloco { margin-bottom: 18px; }
+    .ben-titulo { font-weight: 700; font-size: 0.9rem; color: var(--verde-musgo); margin-bottom: 6px; }
+    .ben-texto { font-size: 0.84rem; line-height: 1.7; color: #3a3a3a; }
+
+    .ben-lista { margin-top: 6px; padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 5px; }
+    .ben-lista li { font-size: 0.83rem; color: #3a3a3a; line-height: 1.5; padding-left: 14px; position: relative; }
+    .ben-lista li::before { content: '·'; position: absolute; left: 0; color: var(--terracota); font-weight: 700; }
+
+    footer {
+      margin-top: 56px;
+      font-family: 'Caveat', cursive;
+      font-size: 1rem;
+      color: #b5c9b8;
+      text-align: center;
+    }
+
+    @media (max-width: 560px) {
+      .ficha { grid-template-columns: repeat(2, 1fr); }
+      .card-header { flex-direction: column; }
+      .cartao-img { width: 100%; height: 140px; }
+      .ficha-detalhe { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="voltar">
+    <a href="aula3.html">← Voltar à Aula 3</a>
+  </div>
+
+  <div class="conteudo">
+    <div class="card-principal">
+
+      <!-- HEADER -->
+      <div class="card-header">
+        <div class="cartao-num-badge">3</div>
+        <div class="card-info">
+          <div class="card-num">3</div>
+          <div class="card-nome">Itaú Personnalité The One Mastercard Black</div>
+          <div class="estrelas">★★★★☆</div>
+          <div class="score">Cartão complementar mais equilibrado</div>
+        </div>
+      </div>
+
+      <!-- FICHA TÉCNICA -->
+      <div class="ficha">
+        <div class="ficha-item">
+          <div class="ficha-label">Anuidade</div>
+          <div class="ficha-valor">R$ 4.000</div>
+        </div>
+        <div class="ficha-item">
+          <div class="ficha-label">Pontuação</div>
+          <div class="ficha-valor">4,0 pts/dólar</div>
+        </div>
+        <div class="ficha-item">
+          <div class="ficha-label">Salas VIP</div>
+          <div class="ficha-valor">Sim</div>
+        </div>
+        <div class="ficha-item">
+          <div class="ficha-label">Bandeira</div>
+          <div class="ficha-valor">Mastercard Black</div>
+        </div>
+      </div>
+
+      <!-- DISCLAIMER -->
+      <div style="background:rgba(230,161,90,0.12); border-left:3px solid var(--ambar); border-radius:0 10px 10px 0; padding:14px 18px; margin-bottom:20px; font-size:0.84rem; line-height:1.6; color:#5a3a10;">
+        <strong>Atenção — confirmar versão do cartão:</strong> Os dados desta página foram identificados como possivelmente referentes ao <strong>Itaú Private The One</strong> (anuidade R$ 4.000, isenção com R$ 3 mi investidos), e não ao <strong>Itaú Personnalité The One</strong>. Por favor, confirme com a Rosana qual versão o Leonardo possui para garantirmos dados precisos nesta análise.
+      </div>
+
+      <!-- ACORDEÃO 1: BENEFÍCIOS DO CARTÃO -->
+      <div class="acordeao">
+        <button class="acordeao-btn" onclick="toggleAcordeao(this)">
+          Benefícios do cartão
+          <span class="acordeao-icon">+</span>
+        </button>
+        <div class="acordeao-corpo">
+
+          <div class="sec-titulo">Pontuação</div>
+          <div class="pontuacao-grid">
+            <div class="pont-item">
+              <div class="pont-label">Pontuação</div>
+              <div class="pont-valor">4,0</div>
+              <div class="pont-desc">pontos por dólar gasto</div>
+            </div>
+          </div>
+
+          <div class="sec-titulo">Bônus de adesão</div>
+          <div class="info-lista">
+            <div class="info-row"><div class="dot"></div><div class="info-text">Não há</div></div>
+          </div>
+
+          <div class="sec-titulo">Salas VIP</div>
+          <div class="sala-item">
+            <div class="sala-nome">Mastercard Airport Experience (LoungeKey)</div>
+            <div class="sala-desc">Acessos ilimitados para o titular + 20 acompanhantes gratuitos por ano</div>
+          </div>
+          <div class="sala-item">
+            <div class="sala-nome">Sala VIP Mastercard Black</div>
+            <div class="sala-desc">Acessos ilimitados para o titular · sem acompanhante gratuito</div>
+          </div>
+          <div class="sala-item">
+            <div class="sala-nome">The Club by Mastercard</div>
+            <div class="sala-desc">Acessos ilimitados para o titular + 1 acompanhante gratuito por visita</div>
+          </div>
+
+          <div class="sec-titulo">Programa de fidelidade</div>
+          <div class="info-lista">
+            <div class="info-row"><div class="dot"></div><div class="info-text">Itaú Shop</div></div>
+          </div>
+
+          <div class="sec-titulo">Validade dos pontos</div>
+          <div class="info-lista">
+            <div class="info-row"><div class="dot"></div><div class="info-text">Não expiram</div></div>
+          </div>
+
+          <div class="sec-titulo">Informações do cartão</div>
+          <div class="ficha-detalhe">
+            <div class="fd-item">
+              <div class="fd-label">Adicionais com mesmos benefícios</div>
+              <div class="fd-valor">Sim</div>
+            </div>
+            <div class="fd-item">
+              <div class="fd-label">Cartões adicionais gratuitos</div>
+              <div class="fd-valor">6</div>
+            </div>
+            <div class="fd-item">
+              <div class="fd-label">Isenção de anuidade</div>
+              <div class="fd-valor">100% para clientes nível 5 no Minhas Vantagens · investimentos acima de R$ 3 mi ou faturas a partir de R$ 60 mil</div>
+            </div>
+            <div class="fd-item">
+              <div class="fd-label">Carteiras digitais</div>
+              <div class="fd-valor">Apple Pay · Google Pay · Samsung Pay</div>
+            </div>
+            <div class="fd-item">
+              <div class="fd-label">Spread do dólar</div>
+              <div class="fd-valor">5,5%</div>
+            </div>
+            <div class="fd-item">
+              <div class="fd-label">Precisa ser correntista?</div>
+              <div class="fd-valor">Sim</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ACORDEÃO 2: BENEFÍCIOS DA BANDEIRA -->
+      <div class="acordeao">
+        <button class="acordeao-btn" onclick="toggleAcordeao(this)">
+          <span>Benefícios da bandeira · Mastercard Black <a href="https://www.itau.com.br/private-bank/produtos-servicos/banking/cartao-itauprivate-theone" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="font-size:0.72rem; font-weight:700; color:var(--terracota); text-decoration:none; margin-left:10px; letter-spacing:0.04em;">Ver no site Itaú ↗</a></span>
+          <span class="acordeao-icon">+</span>
+        </button>
+        <div class="acordeao-corpo">
+
+          <div class="sec-titulo">Concierge e assistência</div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Concierge Mastercard Black · 24h</div>
+            <div class="ben-texto">Assistente pessoal 24h via telefone. Auxílio no planejamento de viagens, busca de eventos, entrega de presentes, experiências especiais, indicações de restaurantes e serviços em diversas localidades.</div>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Assistência Global de Emergência</div>
+            <div class="ben-texto">Atendimento 24h por dia, 365 dias por ano, em qualquer idioma. Orientação e emergência para perda e roubo de cartão, início de solicitações de seguros e outros serviços.</div>
+          </div>
+
+          <div class="sec-titulo">Salas VIP</div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Sala VIP no Aeroporto de Guarulhos</div>
+            <div class="ben-texto">Acesso à Sala VIP Lounge para clientes Mastercard Black que embarcam em voos internacionais. A partir de setembro, será necessário cumprir gasto mínimo trimestral na fatura — consultar o banco para conferir a política.</div>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Mastercard Airport Experiences · LoungeKey</div>
+            <div class="ben-texto">Acesso a salas VIP via LoungeKey pelo app Mastercard Airport Experiences. A política de acesso (pago ou gratuito) varia de acordo com o banco — consultar a instituição financeira ou baixar o app e cadastrar o cartão.</div>
+          </div>
+
+          <div class="sec-titulo">Proteção de compras e viagem</div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Garantia Estendida Original</div>
+            <div class="ben-texto">Dobra os termos da garantia original do fabricante por até 1 ano completo para a maioria dos itens comprados com o cartão. O produto deve ter garantia mínima de 3 meses, sem exceder 3 anos.</div>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Compra Protegida</div>
+            <div class="ben-texto">A maioria das compras fica protegida em caso de perda por roubo ou dano acidental nos primeiros 90 dias a contar da data da compra.</div>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Seguro de Automóveis</div>
+            <div class="ben-texto">Ao alugar um veículo com o cartão no Brasil ou no exterior, o cliente fica coberto contra danos por colisão, roubo e incêndio acidental.</div>
+          </div>
+
+          <div class="sec-titulo">Assistência médica em viagem</div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Masterassist Black</div>
+            <ul class="ben-lista">
+              <li>Despesas Médicas e Hospitalares em viagem ao exterior (acidente ou doença súbita)</li>
+              <li>Translado Médico (remoção médica)</li>
+              <li>Translado de Corpo (repatriação funerária)</li>
+              <li>Retorno de Menores / Idosos</li>
+              <li>Despesas de transportes VIP</li>
+              <li>Acompanhante em caso de hospitalização prolongada e hospedagem</li>
+            </ul>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Proteção de Bagagem</div>
+            <div class="ben-texto">Cobre despesas com atraso ou perda de bagagem, com assistência especializada para ajudar a localizar a bagagem perdida.</div>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Inconveniências de Viagem</div>
+            <div class="ben-texto">Cobre despesas de acomodações pagas antecipadamente em caso de cancelamento ou atraso inesperado de viagem.</div>
+          </div>
+
+          <div class="sec-titulo">Experiências e descontos</div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Priceless Cities</div>
+            <div class="ben-texto">Descontos em hospedagem, experiências e restaurantes em diversas cidades do mundo. Acesse o site Mastercard para conferir as opções disponíveis.</div>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Mastercard Travel Rewards</div>
+            <div class="ben-texto">Ofertas de crédito na fatura em estabelecimentos nos Estados Unidos, Europa, Ásia e Oceania. Pague com o cartão na moeda original do país para receber a oferta anunciada.</div>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Mastercard Surpreenda</div>
+            <div class="ben-texto">Promoções em cinemas, bares e restaurantes. Trocando pontos acumulados, o cliente pode comprar 1 e levar 2 em estabelecimentos cadastrados.</div>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Isenção de rolha</div>
+            <div class="ben-texto">Isenção de taxa de rolha nos principais restaurantes em diversas localidades.</div>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Benefícios para o dia a dia</div>
+            <ul class="ben-lista">
+              <li>10% de desconto na Decolar</li>
+              <li>Gratuidade no BTFIT — app da academia Bodytech</li>
+            </ul>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Ofertas Especiais Mastercard</div>
+            <div class="ben-texto">Ofertas e descontos em lojas e parceiros selecionados.</div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>Gestora de Milhas Executivas™ · by Bruna Araújo · @eujuntomilhas</footer>
+
+  <script>
+    function toggleAcordeao(btn) {
+      const corpo = btn.nextElementSibling;
+      const aberto = corpo.classList.contains('aberto');
+      btn.classList.toggle('aberto', !aberto);
+      corpo.classList.toggle('aberto', !aberto);
+    }
+  </script>
+
+</body>
+</html>

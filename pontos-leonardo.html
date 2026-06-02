@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Potencial de Pontos · Leonardo · Rosana Pestana</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabriela&family=Caveat:wght@400;600&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --verde-musgo:  #4F6F52;
+      --verde-salvia: #8FAF9A;
+      --terracota:    #D97A3A;
+      --ambar:        #E6A15A;
+      --offwhite:     #F4F1EC;
+      --texto:        #1e1e1e;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--offwhite);
+      color: var(--texto);
+      font-family: 'Roboto', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 48px 24px 80px;
+    }
+
+    .voltar {
+      align-self: flex-start;
+      max-width: 760px;
+      width: 100%;
+      margin: 0 auto 36px;
+    }
+    .voltar a {
+      font-size: 0.82rem;
+      color: var(--verde-musgo);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    .voltar a:hover { opacity: 1; }
+
+    header {
+      text-align: center;
+      margin-bottom: 52px;
+      max-width: 760px;
+      width: 100%;
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--terracota);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-family: 'Gabriela', serif;
+      font-size: 2rem;
+      color: var(--verde-musgo);
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+
+    .header-sub {
+      font-family: 'Caveat', cursive;
+      font-size: 1.05rem;
+      color: #7a9a7e;
+    }
+
+    .conteudo {
+      width: 100%;
+      max-width: 760px;
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+
+    /* ── SEÇÃO ── */
+    .secao-titulo {
+      font-family: 'Caveat', cursive;
+      font-size: 1.2rem;
+      color: var(--terracota);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .secao-titulo::after { content: ''; flex: 1; height: 1px; background: rgba(217,122,58,0.25); }
+
+    /* ── BLOCO BASE ── */
+    .bloco-base {
+      background: #fff;
+      border-radius: 20px;
+      padding: 28px 32px;
+      border-left: 4px solid var(--verde-musgo);
+      box-shadow: 0 2px 12px rgba(79,111,82,0.08);
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .base-item { flex: 1; min-width: 140px; }
+
+    .base-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #9ab09e;
+      margin-bottom: 6px;
+    }
+
+    .base-valor {
+      font-family: 'Gabriela', serif;
+      font-size: 1.7rem;
+      color: var(--verde-musgo);
+    }
+
+    .base-desc {
+      font-size: 0.78rem;
+      color: #9ab09e;
+      margin-top: 3px;
+    }
+
+    /* ── TABELA ── */
+    .tabela-wrap {
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(79,111,82,0.07);
+    }
+
+    table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+
+    thead th {
+      background: var(--offwhite);
+      color: var(--verde-musgo);
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 2px solid rgba(79,111,82,0.12);
+    }
+
+    tbody td {
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      color: #3a3a3a;
+      vertical-align: middle;
+    }
+
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover td { background: rgba(244,241,236,0.5); }
+
+    td:first-child { font-weight: 500; color: var(--texto); }
+
+    .tr-destaque td { background: rgba(217,122,58,0.06); }
+    .tr-destaque td:first-child { color: var(--terracota); }
+
+    .num-grande {
+      font-family: 'Gabriela', serif;
+      font-size: 1.1rem;
+      color: var(--verde-musgo);
+    }
+
+    .num-grande.top { color: var(--terracota); }
+
+    .pontos-mes { font-size: 0.75rem; color: #9ab09e; }
+
+    /* ── CARDS CONCLUSÃO ── */
+    .conclusao-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .conc-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 22px 26px;
+      box-shadow: 0 2px 10px rgba(79,111,82,0.07);
+      border-left: 4px solid var(--verde-musgo);
+    }
+
+    .conc-card.top { border-left-color: var(--terracota); }
+
+    .conc-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #9ab09e;
+      margin-bottom: 6px;
+    }
+
+    .conc-cartao {
+      font-family: 'Gabriela', serif;
+      font-size: 1.1rem;
+      color: var(--verde-musgo);
+      margin-bottom: 6px;
+    }
+
+    .conc-card.top .conc-cartao { color: var(--terracota); }
+
+    .conc-desc {
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: #5a5a5a;
+    }
+
+    /* ── TABELA RESUMO FINAL ── */
+    .resumo-final {
+      background: linear-gradient(135deg, var(--verde-musgo) 0%, #3a5e3d 100%);
+      border-radius: 20px;
+      padding: 32px 36px;
+      color: #fff;
+    }
+
+    .resumo-final h2 {
+      font-family: 'Gabriela', serif;
+      font-size: 1.4rem;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .resumo-final p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .resumo-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .resumo-row {
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 14px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .resumo-cenario {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .resumo-valor {
+      font-family: 'Gabriela', serif;
+      font-size: 1.05rem;
+      color: #fff;
+      white-space: nowrap;
+    }
+
+    .nota-rodape {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.5);
+      margin-top: 20px;
+      font-style: italic;
+    }
+
+    footer {
+      margin-top: 56px;
+      font-family: 'Caveat', cursive;
+      font-size: 1rem;
+      color: #b5c9b8;
+      text-align: center;
+    }
+
+    @media (max-width: 520px) {
+      .bloco-base { gap: 20px; }
+      .resumo-final { padding: 24px 20px; }
+      thead th, tbody td { padding: 9px 10px; font-size: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="voltar">
+    <a href="aula3.html">← Voltar à Aula 3</a>
+  </div>
+
+  <header>
+    <div class="tag">Aula 3 · Análise de Pontos</div>
+    <h1>Potencial de Geração de Pontos</h1>
+    <p class="header-sub">Leonardo · R$ 120.000/mês · câmbio de referência R$ 5,00</p>
+  </header>
+
+  <div class="conteudo">
+
+    <!-- BASE DE CÁLCULO -->
+    <div>
+      <div class="secao-titulo">Base de cálculo</div>
+      <div class="bloco-base">
+        <div class="base-item">
+          <div class="base-label">Gasto mensal</div>
+          <div class="base-valor">R$ 120 mil</div>
+          <div class="base-desc">no cartão</div>
+        </div>
+        <div class="base-item">
+          <div class="base-label">Câmbio referência</div>
+          <div class="base-valor">R$ 5,00</div>
+          <div class="base-desc">por dólar</div>
+        </div>
+        <div class="base-item">
+          <div class="base-label">Equivalente em dólar</div>
+          <div class="base-valor">US$ 24 mil</div>
+          <div class="base-desc">por mês</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PONTUAÇÃO NACIONAL -->
+    <div>
+      <div class="secao-titulo">Gasto nacional — produção estimada</div>
+      <div class="tabela-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Cartão</th>
+              <th>Pts / US$</th>
+              <th>Pts / mês</th>
+              <th>Pts / ano</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="tr-destaque">
+              <td>Itaú Visa Infinite Privilege</td>
+              <td>5,5</td>
+              <td><span class="num-grande top">132.000</span></td>
+              <td><span class="num-grande top">1.584.000</span></td>
+            </tr>
+            <tr>
+              <td>Bradesco Amex Centurion</td>
+              <td>5,0</td>
+              <td><span class="num-grande">120.000</span></td>
+              <td><span class="num-grande">1.440.000</span></td>
+            </tr>
+            <tr>
+              <td>BRB Dux Visa Infinite</td>
+              <td>5,0</td>
+              <td><span class="num-grande">120.000</span></td>
+              <td><span class="num-grande">1.440.000</span></td>
+            </tr>
+            <tr>
+              <td>XP Visa Infinite Privilege</td>
+              <td>5,0</td>
+              <td><span class="num-grande">120.000</span></td>
+              <td><span class="num-grande">1.440.000</span></td>
+            </tr>
+            <tr>
+              <td>Unicred Visa Infinite Privilege</td>
+              <td>5,0</td>
+              <td><span class="num-grande">120.000</span></td>
+              <td><span class="num-grande">1.440.000</span></td>
+            </tr>
+            <tr>
+              <td>Caixa Ícone Visa Infinite</td>
+              <td>5,0</td>
+              <td><span class="num-grande">120.000</span></td>
+              <td><span class="num-grande">1.440.000</span></td>
+            </tr>
+            <tr>
+              <td>C6 Graphene</td>
+              <td>4,5</td>
+              <td><span class="num-grande">108.000</span></td>
+              <td><span class="num-grande">1.296.000</span></td>
+            </tr>
+            <tr>
+              <td>Itaú The One</td>
+              <td>3,0</td>
+              <td><span class="num-grande">72.000</span></td>
+              <td><span class="num-grande">864.000</span></td>
+            </tr>
+            <tr>
+              <td>XP Legacy</td>
+              <td>3,0</td>
+              <td><span class="num-grande">72.000</span></td>
+              <td><span class="num-grande">864.000</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- PONTUAÇÃO INTERNACIONAL -->
+    <div>
+      <div class="secao-titulo">Gasto internacional — produção estimada</div>
+      <div class="tabela-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Cartão</th>
+              <th>Pts / US$</th>
+              <th>Pts / mês</th>
+              <th>Pts / ano</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="tr-destaque">
+              <td>XP Legacy</td>
+              <td>9,5</td>
+              <td><span class="num-grande top">228.000</span></td>
+              <td><span class="num-grande top">2.736.000</span></td>
+            </tr>
+            <tr>
+              <td>Itaú Visa Infinite Privilege</td>
+              <td>8,0</td>
+              <td><span class="num-grande">192.000</span></td>
+              <td><span class="num-grande">2.304.000</span></td>
+            </tr>
+            <tr>
+              <td>Bradesco Amex Centurion</td>
+              <td>7,0</td>
+              <td><span class="num-grande">168.000</span></td>
+              <td><span class="num-grande">2.016.000</span></td>
+            </tr>
+            <tr>
+              <td>BRB Dux Visa Infinite</td>
+              <td>7,0</td>
+              <td><span class="num-grande">168.000</span></td>
+              <td><span class="num-grande">2.016.000</span></td>
+            </tr>
+            <tr>
+              <td>XP Visa Infinite Privilege</td>
+              <td>7,0</td>
+              <td><span class="num-grande">168.000</span></td>
+              <td><span class="num-grande">2.016.000</span></td>
+            </tr>
+            <tr>
+              <td>Unicred Visa Infinite Privilege</td>
+              <td>7,0</td>
+              <td><span class="num-grande">168.000</span></td>
+              <td><span class="num-grande">2.016.000</span></td>
+            </tr>
+            <tr>
+              <td>Caixa Ícone Visa Infinite</td>
+              <td>6,0</td>
+              <td><span class="num-grande">144.000</span></td>
+              <td><span class="num-grande">1.728.000</span></td>
+            </tr>
+            <tr>
+              <td>Itaú The One</td>
+              <td>3,5</td>
+              <td><span class="num-grande">84.000</span></td>
+              <td><span class="num-grande">1.008.000</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- CONCLUSÃO POR CRITÉRIO -->
+    <div>
+      <div class="secao-titulo">Leitura prática</div>
+      <div class="conclusao-cards">
+
+        <div class="conc-card top">
+          <div class="conc-label">Maior produção bruta · gasto nacional</div>
+          <div class="conc-cartao">Itaú Visa Infinite Privilege</div>
+          <div class="conc-desc">Produz cerca de 132.000 pontos/mês ou 1.584.000 pontos/ano com câmbio de R$ 5,00.</div>
+        </div>
+
+        <div class="conc-card top">
+          <div class="conc-label">Maior produção bruta · gasto internacional</div>
+          <div class="conc-cartao">XP Legacy</div>
+          <div class="conc-desc">Produz cerca de 228.000 pontos/mês ou 2.736.000 pontos/ano se todo o gasto fosse internacional.</div>
+        </div>
+
+        <div class="conc-card">
+          <div class="conc-label">Melhor equilíbrio para o perfil do Leonardo</div>
+          <div class="conc-cartao">Bradesco Amex Centurion</div>
+          <div class="conc-desc">Produz ~120.000 pts/mês no gasto nacional e ~168.000 pts/mês no internacional. O grande diferencial não é a quantidade bruta — é a transferência 1:1 para TAP, Flying Blue, Copa, United, Iberia e British Airways. Isso preserva o valor dos pontos e transforma o saldo em emissões em executiva com muito mais eficiência.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RESUMO FINAL -->
+    <div class="resumo-final">
+      <h2>Com R$ 120.000/mês no cartão</h2>
+      <p>O Leonardo tem volume de gasto suficiente para produzir entre 1,4 milhão e mais de 2 milhões de pontos por ano. O mais importante não é apenas produzir pontos — é produzir pontos em um cartão que transfira bem para os programas certos.</p>
+
+      <div class="resumo-grid">
+        <div class="resumo-row">
+          <div class="resumo-cenario">Cartões premium de 5 pts/US$ · gasto nacional</div>
+          <div class="resumo-valor">120.000 pts/mês</div>
+        </div>
+        <div class="resumo-row">
+          <div class="resumo-cenario">Itaú Privilege · 5,5 pts/US$ · gasto nacional</div>
+          <div class="resumo-valor">132.000 pts/mês</div>
+        </div>
+        <div class="resumo-row">
+          <div class="resumo-cenario">Centurion · 7 pts/US$ · gasto internacional</div>
+          <div class="resumo-valor">168.000 pts/mês</div>
+        </div>
+        <div class="resumo-row">
+          <div class="resumo-cenario">XP Legacy · 9,5 pts/US$ · gasto internacional</div>
+          <div class="resumo-valor">228.000 pts/mês</div>
+        </div>
+      </div>
+
+      <p class="nota-rodape">Câmbio de referência: R$ 5,00 por dólar · R$ 120.000/mês = US$ 24.000/mês</p>
+    </div>
+
+  </div>
+
+  <footer>Gestora de Milhas Executivas™ · by Bruna Araújo · @eujuntomilhas</footer>
+
+</body>
+</html>

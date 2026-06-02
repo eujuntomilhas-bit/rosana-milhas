@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aula 3 · Análise Comparativa de Cartões Premium · Rosana Pestana</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabriela&family=Caveat:wght@400;600&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --verde-musgo:  #4F6F52;
+      --verde-salvia: #8FAF9A;
+      --terracota:    #D97A3A;
+      --ambar:        #E6A15A;
+      --offwhite:     #F4F1EC;
+      --texto:        #1e1e1e;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--offwhite);
+      color: var(--texto);
+      font-family: 'Roboto', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 48px 24px 80px;
+    }
+
+    /* ── VOLTAR ── */
+    .voltar {
+      align-self: flex-start;
+      max-width: 760px;
+      width: 100%;
+      margin: 0 auto 36px;
+    }
+    .voltar a {
+      font-size: 0.82rem;
+      color: var(--verde-musgo);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    .voltar a:hover { opacity: 1; }
+
+    /* ── HEADER ── */
+    header {
+      text-align: center;
+      margin-bottom: 52px;
+      max-width: 760px;
+      width: 100%;
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--terracota);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-family: 'Gabriela', serif;
+      font-size: 2rem;
+      color: var(--verde-musgo);
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+
+    .header-sub {
+      font-family: 'Caveat', cursive;
+      font-size: 1.05rem;
+      color: #7a9a7e;
+      margin-bottom: 6px;
+    }
+
+    .header-contexto {
+      font-size: 0.82rem;
+      color: #9ab09e;
+      margin-top: 4px;
+    }
+
+    /* ── CONTEÚDO ── */
+    .conteudo {
+      width: 100%;
+      max-width: 760px;
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+
+    /* ── BLOCO CONTEXTO ── */
+    .bloco-contexto {
+      background: #fff;
+      border-radius: 20px;
+      padding: 32px 36px;
+      border-left: 4px solid var(--verde-musgo);
+      box-shadow: 0 2px 12px rgba(79,111,82,0.08);
+    }
+
+    .bloco-contexto p {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: #3a3a3a;
+    }
+
+    .bloco-contexto p + p { margin-top: 12px; }
+
+    /* ── SEÇÃO ── */
+    .secao-titulo {
+      font-family: 'Caveat', cursive;
+      font-size: 1.2rem;
+      color: var(--terracota);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .secao-titulo::after { content: ''; flex: 1; height: 1px; background: rgba(217,122,58,0.25); }
+
+    /* ── CARDS DE CARTÃO ── */
+    .cartoes-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .cartao-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 28px 32px;
+      box-shadow: 0 2px 10px rgba(79,111,82,0.07);
+      border: 2px solid transparent;
+    }
+
+    .cartao-card.destaque { border-color: var(--terracota); }
+
+    .cartao-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      gap: 12px;
+    }
+
+    .cartao-nome {
+      font-family: 'Gabriela', serif;
+      font-size: 1.15rem;
+      color: var(--verde-musgo);
+    }
+
+    .cartao-badge {
+      flex-shrink: 0;
+      display: inline-block;
+      background: var(--terracota);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 100px;
+    }
+
+    .cartao-badge.secundario {
+      background: var(--verde-salvia);
+      color: #fff;
+    }
+
+    .cartao-badge.terceiro {
+      background: #e8e4de;
+      color: #9ab09e;
+    }
+
+    .cartao-conclusao {
+      background: rgba(79,111,82,0.06);
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-size: 0.87rem;
+      line-height: 1.6;
+      color: #3a3a3a;
+      margin-bottom: 20px;
+    }
+
+    /* ── TABELA ── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.86rem;
+    }
+
+    thead th {
+      background: var(--offwhite);
+      color: var(--verde-musgo);
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 2px solid rgba(79,111,82,0.12);
+    }
+
+    tbody td {
+      padding: 11px 14px;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      line-height: 1.5;
+      color: #3a3a3a;
+      vertical-align: top;
+    }
+
+    tbody tr:last-child td { border-bottom: none; }
+
+    tbody tr:hover td { background: rgba(244,241,236,0.5); }
+
+    td:first-child { font-weight: 500; color: var(--texto); }
+
+    /* ── DESTAQUE VENCEDOR ── */
+    .vencedor-box {
+      background: linear-gradient(135deg, rgba(79,111,82,0.08) 0%, rgba(217,122,58,0.06) 100%);
+      border-radius: 16px;
+      padding: 24px 28px;
+      border: 1px solid rgba(79,111,82,0.15);
+    }
+
+    .vencedor-box h3 {
+      font-family: 'Gabriela', serif;
+      font-size: 1.1rem;
+      color: var(--verde-musgo);
+      margin-bottom: 10px;
+    }
+
+    .vencedor-box p {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: #3a3a3a;
+    }
+
+    /* ── ROTAS ── */
+    .rotas-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .rota-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 20px 24px;
+      box-shadow: 0 1px 6px rgba(79,111,82,0.06);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .rota-nome {
+      font-family: 'Gabriela', serif;
+      font-size: 1rem;
+      color: var(--verde-musgo);
+      margin-bottom: 4px;
+    }
+
+    .rota-cia {
+      font-size: 0.78rem;
+      color: #9ab09e;
+      margin-bottom: 6px;
+    }
+
+    .rota-programa {
+      font-size: 0.82rem;
+      color: #5a5a5a;
+    }
+
+    .rota-melhor {
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .rota-melhor .label {
+      font-size: 0.7rem;
+      color: #9ab09e;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 4px;
+    }
+
+    .rota-melhor .cartao-pill {
+      display: inline-block;
+      background: var(--terracota);
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 100px;
+    }
+
+    .rota-melhor .cartao-pill.green {
+      background: var(--verde-musgo);
+    }
+
+    .rota-melhor .cartao-pill.amber {
+      background: var(--ambar);
+      color: #fff;
+    }
+
+    /* ── ALERTA / OBSERVAÇÃO ── */
+    .obs-tag {
+      display: inline-block;
+      background: rgba(230,161,90,0.18);
+      color: #a0622a;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 100px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    /* ── TABELA ROTAS BRASIL ── */
+    .rotas-brasil-wrap {
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(79,111,82,0.07);
+    }
+
+    .rotas-brasil-wrap table td:first-child { font-weight: 600; }
+
+    .programa-pill {
+      display: inline-block;
+      background: rgba(79,111,82,0.1);
+      color: var(--verde-musgo);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 100px;
+    }
+
+    /* ── BLOCO ESTRATÉGIA DUPLA ── */
+    .estrategia-dupla {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .est-item {
+      background: rgba(255,255,255,0.12);
+      border-radius: 12px;
+      padding: 18px 22px;
+    }
+
+    .est-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 6px;
+    }
+
+    .est-cartao {
+      font-family: 'Gabriela', serif;
+      font-size: 1rem;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .est-programas {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.5;
+    }
+
+    /* ── PARIDADE ── */
+    .paridade-destaque {
+      background: #fff;
+      border-radius: 16px;
+      padding: 28px 32px;
+      box-shadow: 0 2px 10px rgba(79,111,82,0.07);
+    }
+
+    .paridade-destaque h3 {
+      font-family: 'Gabriela', serif;
+      font-size: 1.05rem;
+      color: var(--verde-musgo);
+      margin-bottom: 18px;
+    }
+
+    .exemplo-paridade {
+      display: flex;
+      gap: 16px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .ex-card {
+      flex: 1;
+      min-width: 140px;
+      background: var(--offwhite);
+      border-radius: 12px;
+      padding: 16px 20px;
+      text-align: center;
+    }
+
+    .ex-card .eco {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #9ab09e;
+      margin-bottom: 8px;
+    }
+
+    .ex-card .pontos {
+      font-family: 'Gabriela', serif;
+      font-size: 1.6rem;
+      color: var(--verde-musgo);
+      margin-bottom: 4px;
+    }
+
+    .ex-card.melhor .pontos { color: var(--terracota); }
+
+    .ex-card .rotulo {
+      font-size: 0.72rem;
+      color: #9ab09e;
+    }
+
+    /* ── CONCLUSÃO FINAL ── */
+    .conclusao-final {
+      background: linear-gradient(135deg, var(--verde-musgo) 0%, #3a5e3d 100%);
+      border-radius: 20px;
+      padding: 36px 40px;
+      color: #fff;
+    }
+
+    .conclusao-final h2 {
+      font-family: 'Gabriela', serif;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    .conclusao-final p {
+      font-size: 0.92rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.88);
+      margin-bottom: 12px;
+    }
+
+    .recomendacao-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .rec-item {
+      background: rgba(255,255,255,0.12);
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .rec-funcao {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 4px;
+    }
+
+    .rec-cartao {
+      font-family: 'Gabriela', serif;
+      font-size: 1rem;
+      color: #fff;
+    }
+
+    .rec-num {
+      font-family: 'Gabriela', serif;
+      font-size: 1.4rem;
+      color: rgba(255,255,255,0.3);
+      min-width: 28px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      margin-top: 56px;
+      font-family: 'Caveat', cursive;
+      font-size: 1rem;
+      color: #b5c9b8;
+      text-align: center;
+    }
+
+    @media (max-width: 520px) {
+      .rota-card { grid-template-columns: 1fr; }
+      .rota-melhor { text-align: left; }
+      .conclusao-final { padding: 28px 24px; }
+      .bloco-contexto, .cartao-card, .paridade-destaque { padding: 22px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="voltar">
+    <a href="index.html">← Voltar ao dashboard</a>
+  </div>
+
+  <header>
+    <div class="tag">Aula 3 · Fase 1 — Fundação</div>
+    <h1>Análise Comparativa de Cartões Premium</h1>
+    <p class="header-sub">by Bruna Araújo · @eujuntomilhas</p>
+    <p class="header-contexto">Cliente residente em Salvador · Orlando, Miami e Europa em executiva · menor número de conexões</p>
+  </header>
+
+  <div class="conteudo">
+
+    <!-- CONTEXTO -->
+    <div>
+      <div class="secao-titulo">Contexto do cliente</div>
+      <div class="bloco-contexto">
+        <p>O cliente mora em Salvador, o que muda completamente a análise. Para ele, o melhor cartão não é apenas o que oferece mais pontos ou mais benefícios genéricos. O melhor cartão é aquele que conversa melhor com as rotas internacionais disponíveis a partir de Salvador.</p>
+        <p>Hoje, Salvador tem rotas estratégicas que abrem portas para Europa e Estados Unidos com poucas conexões. Essa realidade precisa guiar cada decisão de cartão e programa.</p>
+      </div>
+    </div>
+
+    <!-- ROTAS ESTRATÉGICAS -->
+    <div>
+      <div class="secao-titulo">Rotas estratégicas saindo de Salvador</div>
+      <div class="rotas-grid">
+
+        <div class="rota-card">
+          <div>
+            <div class="rota-nome">Salvador → Lisboa</div>
+            <div class="rota-cia">TAP Air Portugal</div>
+            <div class="rota-programa">Programa: TAP Miles&amp;Go · porta de entrada para toda a Europa</div>
+          </div>
+          <div class="rota-melhor">
+            <div class="label">Melhor cartão</div>
+            <div class="cartao-pill">Centurion</div>
+          </div>
+        </div>
+
+        <div class="rota-card">
+          <div>
+            <div class="rota-nome">Salvador → Paris</div>
+            <div class="rota-cia">Air France</div>
+            <div class="rota-programa">Programa: Flying Blue · conexões pela Europa inteira</div>
+          </div>
+          <div class="rota-melhor">
+            <div class="label">Melhor cartão</div>
+            <div class="cartao-pill">Centurion</div>
+          </div>
+        </div>
+
+        <div class="rota-card">
+          <div>
+            <div class="rota-nome">Salvador → Madri</div>
+            <div class="rota-cia">Air Europa</div>
+            <div class="rota-programa">Programa: Smiles ou SkyTeam · depende da disponibilidade</div>
+          </div>
+          <div class="rota-melhor">
+            <div class="label">Melhor cartão</div>
+            <div class="cartao-pill green">Depende</div>
+          </div>
+        </div>
+
+        <div class="rota-card">
+          <div>
+            <div class="rota-nome">Salvador → Panamá → Miami / Orlando</div>
+            <div class="rota-cia">Copa Airlines</div>
+            <div class="rota-programa">Programa: Copa ConnectMiles ou Smiles · excelente para EUA com 1 conexão</div>
+          </div>
+          <div class="rota-melhor">
+            <div class="label">Melhor cartão</div>
+            <div class="cartao-pill">Centurion</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- OS 3 CARTÕES -->
+    <div>
+      <div class="secao-titulo">1 · Melhor cartão para benefícios</div>
+      <div class="cartoes-grid">
+
+        <!-- CENTURION -->
+        <div class="cartao-card destaque">
+          <div class="cartao-header">
+            <div class="cartao-nome">American Express The Centurion Card</div>
+            <div class="cartao-badge">1º lugar</div>
+          </div>
+          <div class="cartao-conclusao">
+            Melhor experiência premium geral. Especialmente forte para quem quer executiva internacional, salas VIP, atendimento diferenciado e pontos em programas internacionais com paridade 1:1. Para esse cliente, conversa diretamente com TAP, Flying Blue, Copa, United, Iberia e British Airways.
+          </div>
+          <table>
+            <thead>
+              <tr><th>Benefício</th><th>Análise</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Centurion Lounges / Salas VIP Amex</td><td>Muito forte para viagens internacionais. Acesso a salas premium exclusivas.</td></tr>
+              <tr><td>Acompanhantes em salas VIP</td><td>Relevante para viagens em família.</td></tr>
+              <tr><td>Membership Rewards</td><td>Programa de pontos extremamente forte com paridade 1:1 para parceiros internacionais.</td></tr>
+              <tr><td>Pontos sem vencimento</td><td>Excelente para quem acumula para emitir executiva.</td></tr>
+              <tr><td>Concierge premium</td><td>Um dos grandes diferenciais. Reservas, experiências, viagens e solicitações especiais.</td></tr>
+              <tr><td>Benefícios em hotéis</td><td>Upgrades, check-in antecipado e vantagens em estadias selecionadas.</td></tr>
+              <tr><td>Status e atendimento</td><td>Tratamento diferenciado em toda a jornada de viagem.</td></tr>
+            </tbody>
+          </table>
+          <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a href="card-centurion.html" style="display:inline-flex; align-items:center; gap:6px; background:var(--terracota); color:#fff; text-decoration:none; font-size:0.78rem; font-weight:700; padding:8px 16px; border-radius:100px; letter-spacing:0.04em;">Ver card completo →</a>
+            <a href="https://www.americanexpress.com/pt-br/network/beneficios/" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:6px; background:var(--offwhite); color:var(--verde-musgo); text-decoration:none; font-size:0.78rem; font-weight:700; padding:8px 16px; border-radius:100px; letter-spacing:0.04em; border:1px solid rgba(79,111,82,0.2);">Benefícios da bandeira ↗</a>
+          </div>
+        </div>
+
+        <!-- XP LEGACY -->
+        <div class="cartao-card">
+          <div class="cartao-header">
+            <div class="cartao-nome">XP Legacy Visa Infinite</div>
+            <div class="cartao-badge secundario">2º lugar</div>
+          </div>
+          <div class="cartao-conclusao">
+            Excelente para benefícios práticos de viagem e alta pontuação em compras internacionais. Perde um pouco de força para esse cliente quando a transferência precisa passar pela Livelo com deságio para programas internacionais.
+          </div>
+          <table>
+            <thead>
+              <tr><th>Benefício</th><th>Análise</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Pontuação em compras internacionais</td><td>Pode chegar a 9,5 pontos por dólar. Um dos maiores do mercado.</td></tr>
+              <tr><td>Investback</td><td>Retorno financeiro sobre gastos. Diferencial para quem prefere cash back.</td></tr>
+              <tr><td>Sala VIP ilimitada para titular</td><td>Muito relevante para viajantes frequentes.</td></tr>
+              <tr><td>12 convidados por ano</td><td>Bom para viagens em família, com limite anual.</td></tr>
+              <tr><td>Fast Pass em aeroportos</td><td>Reduz tempo em filas. Muito útil para cliente premium.</td></tr>
+              <tr><td>Meet &amp; Greet</td><td>Atendimento dedicado em embarques e desembarques.</td></tr>
+              <tr><td>Concierge XP Legacy</td><td>Viagens, experiências, hotéis, restaurantes e eventos.</td></tr>
+              <tr><td>Cartão de metal</td><td>Percepção premium.</td></tr>
+              <tr><td>Cartões adicionais gratuitos</td><td>Relevante para uso em família.</td></tr>
+            </tbody>
+          </table>
+          <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a href="card-xp-legacy.html" style="display:inline-flex; align-items:center; gap:6px; background:var(--terracota); color:#fff; text-decoration:none; font-size:0.78rem; font-weight:700; padding:8px 16px; border-radius:100px; letter-spacing:0.04em;">Ver card completo →</a>
+            <a href="https://www.xpi.com.br/produtos/cartao-xp-legacy/" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:6px; background:var(--offwhite); color:var(--verde-musgo); text-decoration:none; font-size:0.78rem; font-weight:700; padding:8px 16px; border-radius:100px; letter-spacing:0.04em; border:1px solid rgba(79,111,82,0.2);">Site XP ↗</a>
+          </div>
+        </div>
+
+        <!-- THE ONE -->
+        <div class="cartao-card">
+          <div class="cartao-header">
+            <div class="cartao-nome">Itaú Personnalité The One Mastercard Black</div>
+            <div class="cartao-badge terceiro">3º lugar</div>
+          </div>
+          <div class="cartao-conclusao">
+            O cartão mais equilibrado. Entrega boa pontuação, pontos que não expiram, salas VIP ilimitadas, assistente pessoal e bons seguros. Conversa bem com TAP, Smiles, LATAM e Azul. Menos sofisticado que o Centurion, mas mais direto e fácil de justificar.
+          </div>
+          <table>
+            <thead>
+              <tr><th>Benefício</th><th>Análise</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>3 pts por dólar nacional / 3,5 pts internacional</td><td>Boa pontuação, especialmente para gastos no Brasil.</td></tr>
+              <tr><td>Pontos que não expiram</td><td>Excelente para planejamento de emissões em executiva.</td></tr>
+              <tr><td>LoungeKey ilimitado (titular e adicionais)</td><td>Benefício muito forte para viagens internacionais.</td></tr>
+              <tr><td>12 acessos anuais para acompanhantes</td><td>Bom para viagens em família.</td></tr>
+              <tr><td>The Assistant Itaú</td><td>Assistente pessoal 24h para viagens, hotéis e eventos.</td></tr>
+              <tr><td>Benefícios em hotéis e resorts</td><td>Upgrades, early check-in, late check-out.</td></tr>
+              <tr><td>Benefícios Mastercard Black</td><td>Seguros de viagem, bagagem, aluguel de carro e compra protegida.</td></tr>
+              <tr><td>Possibilidade de isenção de anuidade</td><td>Com alto volume investido ou gastos elevados.</td></tr>
+            </tbody>
+          </table>
+          <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a href="card-itau-theone.html" style="display:inline-flex; align-items:center; gap:6px; background:var(--terracota); color:#fff; text-decoration:none; font-size:0.78rem; font-weight:700; padding:8px 16px; border-radius:100px; letter-spacing:0.04em;">Ver card completo →</a>
+            <a href="https://www.itau.com.br/private-bank/produtos-servicos/banking/cartao-itauprivate-theone" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:6px; background:var(--offwhite); color:var(--verde-musgo); text-decoration:none; font-size:0.78rem; font-weight:700; padding:8px 16px; border-radius:100px; letter-spacing:0.04em; border:1px solid rgba(79,111,82,0.2);">Site Itaú ↗</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PONTUAÇÃO -->
+    <div>
+      <div class="secao-titulo">2 · Melhor pontuação</div>
+
+      <div style="margin-bottom: 24px;">
+        <table style="background:#fff; border-radius:16px; overflow:hidden; box-shadow: 0 2px 10px rgba(79,111,82,0.07);">
+          <thead>
+            <tr>
+              <th>Cartão</th>
+              <th>Pontuação nacional</th>
+              <th>Pontuação internacional</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Centurion</td>
+              <td>Até 5 pts/dólar</td>
+              <td>Até 7 pts/dólar</td>
+            </tr>
+            <tr>
+              <td>XP Legacy</td>
+              <td>3 pts/dólar</td>
+              <td>Até 9,5 pts/dólar</td>
+            </tr>
+            <tr>
+              <td>Itaú The One</td>
+              <td>3 pts/dólar</td>
+              <td>3,5 pts/dólar</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="paridade-destaque">
+        <h3>O que realmente importa: paridade de transferência</h3>
+        <p style="font-size: 0.88rem; line-height: 1.7; color: #3a3a3a; margin-bottom: 18px;">
+          Um cartão pode gerar muitos pontos, mas se a transferência para o programa certo tiver deságio, o poder real de emissão cai muito. Veja a diferença entre o Centurion (Membership Rewards) e a Livelo (usada pelo XP Legacy):
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Programa parceiro</th>
+              <th>Centurion / MR</th>
+              <th>Livelo</th>
+              <th>Vantagem</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Flying Blue (Air France)</td><td>1:1</td><td>3,5:1</td><td style="color:var(--terracota); font-weight:700;">Centurion</td></tr>
+            <tr><td>British Airways Avios</td><td>1:1</td><td>3,5:1</td><td style="color:var(--terracota); font-weight:700;">Centurion</td></tr>
+            <tr><td>Iberia Plus</td><td>1:1</td><td>3,5:1</td><td style="color:var(--terracota); font-weight:700;">Centurion</td></tr>
+            <tr><td>Copa ConnectMiles</td><td>1:1</td><td>3:1</td><td style="color:var(--terracota); font-weight:700;">Centurion</td></tr>
+            <tr><td>United MileagePlus</td><td>1:1</td><td>4:1</td><td style="color:var(--terracota); font-weight:700;">Centurion</td></tr>
+            <tr><td>TAP Miles&amp;Go</td><td>1:1</td><td>—</td><td style="color:var(--terracota); font-weight:700;">Centurion</td></tr>
+            <tr><td>Smiles</td><td>—</td><td>1:1</td><td style="color:var(--verde-musgo); font-weight:700;">Livelo</td></tr>
+            <tr><td>LATAM Pass</td><td>—</td><td>1:1</td><td style="color:var(--verde-musgo); font-weight:700;">Livelo</td></tr>
+            <tr><td>Azul Fidelidade</td><td>—</td><td>1:1</td><td style="color:var(--verde-musgo); font-weight:700;">Livelo</td></tr>
+          </tbody>
+        </table>
+
+        <p style="font-size: 0.85rem; line-height: 1.6; color: #5a5a5a; margin-top: 18px; font-style: italic;">
+          Exemplo prático: com 350.000 pontos Centurion, você tem 350.000 milhas Flying Blue. Com 350.000 pontos Livelo, você tem apenas 100.000 milhas Flying Blue. A diferença é enorme.
+        </p>
+
+        <div class="exemplo-paridade">
+          <div class="ex-card melhor">
+            <div class="eco">Centurion</div>
+            <div class="pontos">100 mil</div>
+            <div class="rotulo">pontos para<br>100.000 Flying Blue</div>
+          </div>
+          <div class="ex-card">
+            <div class="eco">Livelo</div>
+            <div class="pontos">350 mil</div>
+            <div class="rotulo">pontos para<br>100.000 Flying Blue</div>
+          </div>
+          <div class="ex-card melhor">
+            <div class="eco">Centurion</div>
+            <div class="pontos">100 mil</div>
+            <div class="rotulo">pontos para<br>100.000 Copa</div>
+          </div>
+          <div class="ex-card">
+            <div class="eco">Livelo</div>
+            <div class="pontos">300 mil</div>
+            <div class="rotulo">pontos para<br>100.000 Copa</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ANÁLISE POR ROTA - SALVADOR -->
+    <div>
+      <div class="secao-titulo">3 · Análise por rota — saindo de Salvador</div>
+      <div style="background:#fff; border-radius:16px; overflow:hidden; box-shadow: 0 2px 10px rgba(79,111,82,0.07);">
+        <table>
+          <thead>
+            <tr>
+              <th>Destino</th>
+              <th>Programa mais relevante</th>
+              <th>Melhor cartão</th>
+              <th>2ª opção</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Salvador → Lisboa</td><td>TAP Miles&amp;Go</td><td style="color:var(--terracota); font-weight:700;">Centurion</td><td>Itaú The One</td></tr>
+            <tr><td>Salvador → Paris</td><td>Flying Blue</td><td style="color:var(--terracota); font-weight:700;">Centurion</td><td>XP Legacy (com deságio)</td></tr>
+            <tr><td>Salvador → Madri</td><td>Smiles ou SkyTeam</td><td style="color:var(--ambar); font-weight:700;">Depende</td><td>Centurion se internacional; The One se Smiles</td></tr>
+            <tr><td>Salvador → Panamá → Miami <span class="obs-tag">1 conexão</span></td><td>Copa ConnectMiles</td><td style="color:var(--terracota); font-weight:700;">Centurion</td><td>The One / XP via Smiles</td></tr>
+            <tr><td>Salvador → Panamá → Orlando <span class="obs-tag">1 conexão</span></td><td>Copa ConnectMiles</td><td style="color:var(--terracota); font-weight:700;">Centurion</td><td>The One / XP via Smiles</td></tr>
+            <tr><td>Europa em geral</td><td>TAP, Flying Blue, Iberia, BA</td><td style="color:var(--terracota); font-weight:700;">Centurion</td><td>Itaú The One</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ROTAS BRASIL → MIAMI -->
+    <div>
+      <div class="secao-titulo">4 · Rotas Brasil → Miami por companhia</div>
+      <div class="bloco-contexto" style="margin-bottom: 20px;">
+        <p>Para Miami, a análise precisa ser feita rota por rota. Não é só LATAM — GOL, Azul e American também operam trechos relevantes saindo de diferentes aeroportos. Cada companhia favorece um programa diferente.</p>
+      </div>
+      <div class="rotas-brasil-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Origem</th>
+              <th>Companhia</th>
+              <th>Programa</th>
+              <th>Observação</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>GRU / São Paulo → MIA</td>
+              <td>LATAM</td>
+              <td><span class="programa-pill">LATAM Pass</span></td>
+              <td>Rota direta, forte. Itaú / Livelo / XP via Livelo.</td>
+            </tr>
+            <tr>
+              <td>GIG / Rio → MIA</td>
+              <td>GOL</td>
+              <td><span class="programa-pill">Smiles</span></td>
+              <td>Verificar data e companhia. Não atribuir à LATAM.</td>
+            </tr>
+            <tr>
+              <td>BSB / Brasília → MIA</td>
+              <td>GOL</td>
+              <td><span class="programa-pill">Smiles</span></td>
+              <td>Não é LATAM. Rota para Smiles — Itaú / XP via Livelo.</td>
+            </tr>
+            <tr>
+              <td>BEL / Belém → MIA</td>
+              <td>GOL</td>
+              <td><span class="programa-pill">Smiles</span></td>
+              <td>Rota relevante para Smiles.</td>
+            </tr>
+            <tr>
+              <td>BEL / Belém → FLL <span class="obs-tag">Fort Laud.</span></td>
+              <td>Azul</td>
+              <td><span class="programa-pill">Azul Fidelidade</span></td>
+              <td>FLL ≠ MIA. Atende região sul da Flórida.</td>
+            </tr>
+            <tr>
+              <td>VCP / Campinas → FLL <span class="obs-tag">Fort Laud.</span></td>
+              <td>Azul</td>
+              <td><span class="programa-pill">Azul Fidelidade</span></td>
+              <td>FLL ≠ MIA. Para "Miami", tecnicamente é Fort Lauderdale.</td>
+            </tr>
+            <tr>
+              <td>FOR / Fortaleza → MIA <span class="obs-tag">Sazonal</span></td>
+              <td>GOL</td>
+              <td><span class="programa-pill">Smiles</span></td>
+              <td>Validar por data. Operação sazonal / alta temporada.</td>
+            </tr>
+            <tr>
+              <td>SSA / Salvador → MIA <span class="obs-tag">via Panamá</span></td>
+              <td>Copa Airlines</td>
+              <td><span class="programa-pill">Copa ConnectMiles</span></td>
+              <td>1 conexão em PTY. Melhor opção para Salvador.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ROTAS BRASIL → ORLANDO -->
+    <div>
+      <div class="secao-titulo">5 · Rotas Brasil → Orlando por companhia</div>
+      <div class="bloco-contexto" style="margin-bottom: 20px;">
+        <p>Para Orlando, Azul e LATAM são as operadoras mais relevantes. GOL aparece em algumas rotas, mas com atenção à sazonalidade. O programa que melhor atende depende diretamente do aeroporto de embarque.</p>
+      </div>
+      <div class="rotas-brasil-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Origem</th>
+              <th>Companhia</th>
+              <th>Programa</th>
+              <th>Observação</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>GRU / São Paulo → MCO</td>
+              <td>LATAM</td>
+              <td><span class="programa-pill">LATAM Pass</span></td>
+              <td>Diário, ~9h25. Rota forte para LATAM Pass.</td>
+            </tr>
+            <tr>
+              <td>VCP / Campinas → MCO</td>
+              <td>Azul</td>
+              <td><span class="programa-pill">Azul Fidelidade</span></td>
+              <td>Uma das principais rotas para Orlando. Livelo / Itaú.</td>
+            </tr>
+            <tr>
+              <td>CNF / Belo Horizonte → MCO</td>
+              <td>Azul</td>
+              <td><span class="programa-pill">Azul Fidelidade</span></td>
+              <td>Relevante para Azul. Validar data.</td>
+            </tr>
+            <tr>
+              <td>REC / Recife → MCO <span class="obs-tag">Sazonal</span></td>
+              <td>Azul</td>
+              <td><span class="programa-pill">Azul Fidelidade</span></td>
+              <td>Sazonal em alguns períodos. Validar por data.</td>
+            </tr>
+            <tr>
+              <td>BSB / Brasília → MCO</td>
+              <td>GOL</td>
+              <td><span class="programa-pill">Smiles</span></td>
+              <td>Não LATAM. Rota para Smiles — Itaú / XP via Livelo.</td>
+            </tr>
+            <tr>
+              <td>FOR / Fortaleza → MCO <span class="obs-tag">Sazonal</span></td>
+              <td>GOL</td>
+              <td><span class="programa-pill">Smiles</span></td>
+              <td>Sazonal / por data. Validar disponibilidade.</td>
+            </tr>
+            <tr>
+              <td>SSA / Salvador → MCO <span class="obs-tag">via Panamá</span></td>
+              <td>Copa Airlines</td>
+              <td><span class="programa-pill">Copa ConnectMiles</span></td>
+              <td>1 conexão em PTY. Melhor opção para Salvador.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- O QUE MUDA NA ANÁLISE -->
+    <div>
+      <div class="secao-titulo">6 · O que isso muda na análise dos cartões</div>
+      <div class="bloco-contexto">
+        <p>Para <strong>Europa</strong>, o Centurion continua sendo o cartão mais forte. Ele conversa diretamente com TAP Miles&amp;Go, Flying Blue, Copa ConnectMiles, United, Iberia e British Airways — todos com paridade 1:1.</p>
+        <p>Para <strong>Miami e Orlando</strong>, a análise muda. Há muitas rotas brasileiras operadas por GOL, Azul e LATAM — e cada uma favorece um programa diferente: Smiles para GOL, Azul Fidelidade para Azul, LATAM Pass para LATAM. Para esses programas, cartões com boa aderência à Livelo (XP Legacy, Itaú The One) ou ao ecossistema Itaú são os mais eficientes.</p>
+        <p>Conclusão: o cliente que quer Miami e Orlando <strong>não deve depender só do Centurion</strong>. Ele precisa também de um cartão forte em Smiles, Azul Fidelidade e LATAM Pass.</p>
+      </div>
+
+      <div style="background:#fff; border-radius:16px; overflow:hidden; box-shadow: 0 2px 10px rgba(79,111,82,0.07); margin-top: 20px;">
+        <table>
+          <thead>
+            <tr>
+              <th>Companhia</th>
+              <th>Rotas para EUA</th>
+              <th>Programa</th>
+              <th>Melhor ecossistema</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>GOL</td><td>BSB–MIA, BEL–MIA, FOR–MIA saz., BSB–MCO, FOR–MCO saz.</td><td><span class="programa-pill">Smiles</span></td><td>Itaú / Livelo / XP via Livelo</td></tr>
+            <tr><td>Azul</td><td>VCP–FLL, BEL–FLL, VCP–MCO, CNF–MCO, REC–MCO saz.</td><td><span class="programa-pill">Azul Fidelidade</span></td><td>Livelo / Itaú / XP via Livelo</td></tr>
+            <tr><td>LATAM</td><td>GRU–MIA, GRU–MCO</td><td><span class="programa-pill">LATAM Pass</span></td><td>Itaú / Livelo / XP via Livelo</td></tr>
+            <tr><td>Copa</td><td>SSA–PTY–MIA/MCO</td><td><span class="programa-pill">ConnectMiles</span></td><td>Centurion (1:1) ou Smiles</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- CONCLUSÃO FINAL -->
+    <div class="conclusao-final">
+      <h2>Conclusão final</h2>
+      <p>
+        O <strong>American Express The Centurion Card</strong> continua sendo o melhor cartão principal para a estratégia internacional premium desse cliente — especialmente para Europa e para rotas via Copa saindo de Salvador.
+      </p>
+      <p>
+        Mas para Miami e Orlando existe uma camada adicional. Há muitas rotas brasileiras operadas por GOL, Azul e LATAM — e o Centurion não conversa com esses programas. Nesse caso, é fundamental ter também um cartão forte em <strong>Smiles, Azul Fidelidade e LATAM Pass</strong>.
+      </p>
+      <p>
+        A estratégia ideal é dupla: Centurion para executiva internacional e parceiros internacionais; Itaú The One (ou XP via Livelo) para GOL, Azul e LATAM quando a melhor emissão para EUA aparecer nesses programas.
+      </p>
+
+      <div class="estrategia-dupla">
+        <div class="est-item">
+          <div class="est-label">Estratégia internacional premium · Europa · Copa / Panamá</div>
+          <div class="est-cartao">American Express The Centurion Card</div>
+          <div class="est-programas">TAP Miles&amp;Go · Flying Blue · Copa ConnectMiles · United · Iberia · British Airways — todos 1:1</div>
+        </div>
+        <div class="est-item">
+          <div class="est-label">Estratégia Brasil → EUA · GOL · Azul · LATAM</div>
+          <div class="est-cartao">Itaú Personnalité The One / XP Legacy via Livelo</div>
+          <div class="est-programas">Smiles · Azul Fidelidade · LATAM Pass — paridade 1:1 via Livelo ou Itaú</div>
+        </div>
+      </div>
+
+      <p style="margin-top: 20px; font-size: 0.85rem; color: rgba(255,255,255,0.65); font-style: italic;">
+        Importante: para Miami e Orlando, sempre validar rota por rota qual companhia opera, se o voo é regular ou sazonal, e qual programa oferece a melhor disponibilidade para a data desejada antes de transferir pontos.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- CARD PONTOS LEONARDO -->
+  <div style="width:100%; max-width:760px; margin-top: 8px;">
+    <a href="pontos-leonardo.html" style="
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #fff;
+      border-radius: 16px;
+      padding: 24px 28px;
+      text-decoration: none;
+      border: 2px solid transparent;
+      box-shadow: 0 2px 8px rgba(79,111,82,0.07);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    " onmouseover="this.style.borderColor='var(--terracota)';this.style.boxShadow='0 4px 20px rgba(217,122,58,0.15)'" onmouseout="this.style.borderColor='transparent';this.style.boxShadow='0 2px 8px rgba(79,111,82,0.07)'">
+      <div>
+        <div style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--terracota); margin-bottom:4px;">Análise · Leonardo</div>
+        <div style="font-family:'Gabriela',serif; font-size:1.1rem; color:var(--verde-musgo); margin-bottom:3px;">Potencial de Geração de Pontos</div>
+        <div style="font-size:0.8rem; color:#9ab09e;">R$ 120.000/mês · comparativo por cartão · nacional e internacional</div>
+      </div>
+      <div style="font-size:1.2rem; color:var(--terracota); margin-left:20px; opacity:0.7;">→</div>
+    </a>
+  </div>
+
+  <footer>Gestora de Milhas Executivas™ · by Bruna Araújo · @eujuntomilhas</footer>
+
+</body>
+</html>

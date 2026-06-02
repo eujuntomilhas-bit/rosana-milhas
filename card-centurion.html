@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bradesco Amex Centurion · Benefícios · Rosana Pestana</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabriela&family=Caveat:wght@400;600&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --verde-musgo:  #4F6F52;
+      --verde-salvia: #8FAF9A;
+      --terracota:    #D97A3A;
+      --ambar:        #E6A15A;
+      --offwhite:     #F4F1EC;
+      --texto:        #1e1e1e;
+      --ouro:         #C9A84C;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--offwhite);
+      color: var(--texto);
+      font-family: 'Roboto', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 48px 24px 80px;
+    }
+
+    .voltar {
+      align-self: flex-start;
+      max-width: 760px;
+      width: 100%;
+      margin: 0 auto 36px;
+    }
+    .voltar a {
+      font-size: 0.82rem;
+      color: var(--verde-musgo);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    .voltar a:hover { opacity: 1; }
+
+    .conteudo {
+      width: 100%;
+      max-width: 760px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* ── CARD PRINCIPAL ── */
+    .card-principal {
+      background: #fff;
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+    }
+
+    .card-header {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .cartao-num-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      background: var(--texto);
+      color: #fff;
+      border-radius: 12px;
+      font-family: 'Gabriela', serif;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .card-info { flex: 1; min-width: 200px; }
+
+    .card-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      background: var(--texto);
+      color: #fff;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .card-nome {
+      font-family: 'Gabriela', serif;
+      font-size: 1.25rem;
+      color: var(--texto);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .estrelas {
+      color: var(--ouro);
+      font-size: 1rem;
+      margin-bottom: 4px;
+      letter-spacing: 2px;
+    }
+
+    .score {
+      font-size: 0.82rem;
+      color: #9ab09e;
+    }
+
+    /* ── FICHA TÉCNICA ── */
+    .ficha {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(0,0,0,0.06);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .ficha-item {
+      background: var(--offwhite);
+      padding: 14px 16px;
+    }
+
+    .ficha-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #9ab09e;
+      margin-bottom: 4px;
+    }
+
+    .ficha-valor {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--texto);
+      line-height: 1.3;
+    }
+
+    /* ── ACORDEÃO ── */
+    .acordeao {
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+
+    .acordeao-btn {
+      width: 100%;
+      background: #fff;
+      border: none;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-family: 'Roboto', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--texto);
+      transition: background 0.15s;
+    }
+
+    .acordeao-btn:hover { background: var(--offwhite); }
+
+    .acordeao-icon {
+      font-size: 1.3rem;
+      color: var(--verde-musgo);
+      transition: transform 0.25s;
+      line-height: 1;
+    }
+
+    .acordeao-btn.aberto .acordeao-icon { transform: rotate(45deg); }
+
+    .acordeao-corpo {
+      display: none;
+      padding: 0 20px 20px;
+      background: #fff;
+    }
+
+    .acordeao-corpo.aberto { display: block; }
+
+    /* ── CONTEÚDO INTERNO ── */
+    .sec-titulo {
+      font-family: 'Caveat', cursive;
+      font-size: 1.05rem;
+      color: var(--terracota);
+      margin: 20px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sec-titulo::after { content: ''; flex: 1; height: 1px; background: rgba(217,122,58,0.2); }
+
+    .parceiros-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .parceiro-pill {
+      background: rgba(79,111,82,0.08);
+      color: var(--verde-musgo);
+      border-radius: 100px;
+      padding: 5px 12px;
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+
+    .pontuacao-grid {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 4px;
+    }
+
+    .pont-item {
+      background: var(--offwhite);
+      border-radius: 10px;
+      padding: 12px 18px;
+      flex: 1;
+      min-width: 130px;
+      text-align: center;
+    }
+
+    .pont-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #9ab09e;
+      margin-bottom: 6px;
+    }
+
+    .pont-valor {
+      font-family: 'Gabriela', serif;
+      font-size: 1.5rem;
+      color: var(--terracota);
+    }
+
+    .pont-desc { font-size: 0.72rem; color: #9ab09e; }
+
+    .info-lista {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.86rem;
+      line-height: 1.5;
+    }
+
+    .info-row .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--terracota);
+      flex-shrink: 0;
+      margin-top: 6px;
+    }
+
+    .info-row .info-text { color: #3a3a3a; }
+    .info-row .info-label { font-weight: 700; color: var(--texto); margin-right: 4px; }
+
+    .sala-item {
+      background: var(--offwhite);
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-bottom: 8px;
+    }
+
+    .sala-nome {
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--texto);
+      margin-bottom: 3px;
+    }
+
+    .sala-desc { font-size: 0.8rem; color: #5a5a5a; line-height: 1.5; }
+
+    .destaque-box {
+      background: rgba(217,122,58,0.07);
+      border-left: 3px solid var(--terracota);
+      border-radius: 0 10px 10px 0;
+      padding: 12px 16px;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: #3a3a3a;
+      margin: 8px 0;
+    }
+
+    .ficha-detalhe {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .fd-item {
+      background: var(--offwhite);
+      border-radius: 10px;
+      padding: 12px 16px;
+    }
+
+    .fd-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: #9ab09e;
+      margin-bottom: 4px;
+    }
+
+    .fd-valor {
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--texto);
+    }
+
+    /* bandeira */
+    .beneficio-bloco {
+      margin-bottom: 18px;
+    }
+
+    .ben-titulo {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--verde-musgo);
+      margin-bottom: 6px;
+    }
+
+    .ben-texto {
+      font-size: 0.84rem;
+      line-height: 1.7;
+      color: #3a3a3a;
+    }
+
+    .ben-lista {
+      margin-top: 6px;
+      padding-left: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .ben-lista li {
+      font-size: 0.83rem;
+      color: #3a3a3a;
+      line-height: 1.5;
+      padding-left: 14px;
+      position: relative;
+    }
+
+    .ben-lista li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: var(--terracota);
+      font-weight: 700;
+    }
+
+    footer {
+      margin-top: 56px;
+      font-family: 'Caveat', cursive;
+      font-size: 1rem;
+      color: #b5c9b8;
+      text-align: center;
+    }
+
+    @media (max-width: 560px) {
+      .ficha { grid-template-columns: repeat(2, 1fr); }
+      .card-header { flex-direction: column; }
+      .cartao-img { width: 100%; height: 140px; }
+      .ficha-detalhe { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="voltar">
+    <a href="aula3.html">← Voltar à Aula 3</a>
+  </div>
+
+  <div class="conteudo">
+
+    <div class="card-principal">
+
+      <!-- HEADER -->
+      <div class="card-header">
+        <div class="cartao-num-badge">1</div>
+        <div class="card-info">
+          <div class="card-num">1</div>
+          <div class="card-nome">Bradesco American Express® The Centurion Card</div>
+          <div class="estrelas">★★★★★</div>
+          <div class="score">401,75</div>
+        </div>
+      </div>
+
+      <!-- FICHA TÉCNICA -->
+      <div class="ficha">
+        <div class="ficha-item">
+          <div class="ficha-label">Anuidade</div>
+          <div class="ficha-valor">R$ 25.000</div>
+        </div>
+        <div class="ficha-item">
+          <div class="ficha-label">Pontuação</div>
+          <div class="ficha-valor">Até 7,0 pts/dólar</div>
+        </div>
+        <div class="ficha-item">
+          <div class="ficha-label">Salas VIP</div>
+          <div class="ficha-valor">Sim</div>
+        </div>
+        <div class="ficha-item">
+          <div class="ficha-label">Bandeira</div>
+          <div class="ficha-valor">American Express</div>
+        </div>
+      </div>
+
+      <!-- ACORDEÃO 1: BENEFÍCIOS DO CARTÃO -->
+      <div class="acordeao">
+        <button class="acordeao-btn" onclick="toggleAcordeao(this)">
+          Benefícios do cartão
+          <span class="acordeao-icon">+</span>
+        </button>
+        <div class="acordeao-corpo">
+
+          <div class="sec-titulo">Pontuação</div>
+          <div class="pontuacao-grid">
+            <div class="pont-item">
+              <div class="pont-label">Gasto no Brasil</div>
+              <div class="pont-valor">5,0</div>
+              <div class="pont-desc">pontos por dólar</div>
+            </div>
+            <div class="pont-item">
+              <div class="pont-label">Gasto no exterior</div>
+              <div class="pont-valor">7,0</div>
+              <div class="pont-desc">pontos por dólar</div>
+            </div>
+          </div>
+
+          <div class="sec-titulo">Parceiros de transferência · paridade 1:1</div>
+          <div class="parceiros-grid">
+            <span class="parceiro-pill">TAP Miles&Go</span>
+            <span class="parceiro-pill">All Accor Live Limitless</span>
+            <span class="parceiro-pill">MileagePlus · United</span>
+            <span class="parceiro-pill">Etihad Guest</span>
+            <span class="parceiro-pill">Club Premier Aeromexico</span>
+            <span class="parceiro-pill">British Airways Club</span>
+            <span class="parceiro-pill">Iberia Club</span>
+            <span class="parceiro-pill">Flying Blue · Air France/KLM</span>
+            <span class="parceiro-pill">IHG One Rewards</span>
+            <span class="parceiro-pill">ConnectMiles · Copa Airlines</span>
+            <span class="parceiro-pill">Hilton Honors</span>
+            <span class="parceiro-pill">Jumeirah One</span>
+          </div>
+
+          <div class="sec-titulo">Bônus de adesão</div>
+          <div class="info-lista">
+            <div class="info-row"><div class="dot"></div><div class="info-text"><span class="info-label">Livelo:</span> Não há</div></div>
+            <div class="info-row"><div class="dot"></div><div class="info-text"><span class="info-label">Membership Rewards® Bradesco:</span> 300.000 pontos</div></div>
+          </div>
+
+          <div class="sec-titulo">Salas VIP</div>
+          <div class="sala-item">
+            <div class="sala-nome">Priority Pass</div>
+            <div class="sala-desc">Acessos ilimitados para o titular + 12 acompanhantes gratuitos por visita</div>
+          </div>
+          <div class="sala-item">
+            <div class="sala-nome">Bradesco Cartões Lounge</div>
+            <div class="sala-desc">Acessos ilimitados para o titular + 1 acompanhante gratuito por visita</div>
+          </div>
+          <div class="sala-item">
+            <div class="sala-nome">Centurion Lounge</div>
+            <div class="sala-desc">Acessos ilimitados para o titular + 2 acompanhantes gratuitos por visita</div>
+          </div>
+          <div class="sala-item">
+            <div class="sala-nome">Delta Sky Club</div>
+            <div class="sala-desc">Acessos ilimitados para o titular + 2 acompanhantes gratuitos por visita</div>
+          </div>
+          <div class="sala-item">
+            <div class="sala-nome">VIP Club BSB</div>
+            <div class="sala-desc">Acessos ilimitados para o titular · sem acompanhante gratuito</div>
+          </div>
+          <div class="sala-item">
+            <div class="sala-nome">American Express Lounge</div>
+            <div class="sala-desc">Acessos ilimitados para o titular + 2 acompanhantes gratuitos por visita</div>
+          </div>
+          <div class="sala-item">
+            <div class="sala-nome">W Premium Lounge</div>
+            <div class="sala-desc">Acessos ilimitados para o titular + 2 acompanhantes gratuitos por visita</div>
+          </div>
+          <div class="sala-item">
+            <div class="sala-nome">Lufthansa Business Lounge</div>
+            <div class="sala-desc">Acessos ilimitados para o titular · sem acompanhante gratuito por ano</div>
+          </div>
+          <div class="sala-item">
+            <div class="sala-nome">Lufthansa Senator Lounge</div>
+            <div class="sala-desc">Acessos ilimitados para o titular · sem acompanhante gratuito por ano</div>
+          </div>
+
+          <div class="sec-titulo">Programas de fidelidade</div>
+          <div class="info-lista">
+            <div class="info-row"><div class="dot"></div><div class="info-text">Livelo</div></div>
+            <div class="info-row"><div class="dot"></div><div class="info-text">Membership Rewards® Bradesco</div></div>
+          </div>
+
+          <div class="sec-titulo">Validade dos pontos</div>
+          <div class="info-lista">
+            <div class="info-row"><div class="dot"></div><div class="info-text"><span class="info-label">Livelo:</span> Não expiram</div></div>
+            <div class="info-row"><div class="dot"></div><div class="info-text"><span class="info-label">Membership Rewards® Bradesco:</span> Não expiram</div></div>
+          </div>
+
+          <div class="sec-titulo">Informações do cartão</div>
+          <div class="ficha-detalhe">
+            <div class="fd-item">
+              <div class="fd-label">Adicionais com mesmos benefícios</div>
+              <div class="fd-valor">Sim</div>
+            </div>
+            <div class="fd-item">
+              <div class="fd-label">Cartões adicionais gratuitos</div>
+              <div class="fd-valor">4</div>
+            </div>
+            <div class="fd-item">
+              <div class="fd-label">Isenção de anuidade</div>
+              <div class="fd-valor">Não há política publicada</div>
+            </div>
+            <div class="fd-item">
+              <div class="fd-label">Carteiras digitais</div>
+              <div class="fd-valor">Apple Pay</div>
+            </div>
+            <div class="fd-item">
+              <div class="fd-label">Spread do dólar</div>
+              <div class="fd-valor">5,3%</div>
+            </div>
+            <div class="fd-item">
+              <div class="fd-label">Precisa ser correntista?</div>
+              <div class="fd-valor">Sim</div>
+            </div>
+          </div>
+
+          <div class="sec-titulo">Benefícios em companhias aéreas</div>
+          <div class="destaque-box">
+            Até 20% de desconto em companhias aéreas parceiras: Emirates, Etihad Airways e Qatar Airways.
+          </div>
+
+          <div class="sec-titulo">Status em locadoras</div>
+          <div class="info-lista">
+            <div class="info-row"><div class="dot"></div><div class="info-text"><span class="info-label">Sixt:</span> Status Diamond</div></div>
+            <div class="info-row"><div class="dot"></div><div class="info-text"><span class="info-label">Hertz:</span> Status President Circle</div></div>
+          </div>
+
+          <div class="sec-titulo">Benefícios em hotéis</div>
+          <div class="destaque-box">
+            Fine Hotel &amp; Resorts e The Hotel Collection: upgrade de quarto disponível.
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ACORDEÃO 2: BENEFÍCIOS DA BANDEIRA -->
+      <div class="acordeao">
+        <button class="acordeao-btn" onclick="toggleAcordeao(this)">
+          <span>Benefícios da bandeira <a href="https://www.americanexpress.com/pt-br/network/beneficios/" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="font-size:0.72rem; font-weight:700; color:var(--terracota); text-decoration:none; margin-left:10px; letter-spacing:0.04em;">Ver no site Amex ↗</a></span>
+          <span class="acordeao-icon">+</span>
+        </button>
+        <div class="acordeao-corpo">
+
+          <div class="sec-titulo">Salas VIP</div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">American Express Centurion Lounge · Guarulhos</div>
+            <div class="ben-texto">Acesso exclusivo e ilimitado com pratos à la carte, buffet, quiet room, toaletes com chuveiros, sala de leitura, televisão e espaço infantil. Associados American Express têm direito a acompanhante. Crianças abaixo de 12 anos entram gratuitamente. Localizado no terminal 3, disponível 24h por dia.</div>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">The Centurion Lounge</div>
+            <div class="ben-texto">Conforto e serviço premium das salas Centurion ao redor do mundo. Acesso ilimitado e exclusivo para portadores American Express The Platinum.</div>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">The Global Lounge Collection</div>
+            <div class="ben-texto">Lounges das redes The Centurion®, Delta Sky Club®, Plaza Premium Lounge e centenas de outras salas VIP em aeroportos pelo mundo. A Amex mantém mais de 40 lounges próprios espalhados globalmente.</div>
+          </div>
+
+          <div class="sec-titulo">Concierge e viagens</div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Serviço de Concierge 24h</div>
+            <div class="ben-texto">Suporte completo em viagens, cultura e lazer: sugestões de restaurantes, reserva e confirmação de voos, dicas de presentes e apoio no dia a dia. Disponível 24 horas por dia.</div>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Fine Hotel &amp; Resorts</div>
+            <div class="ben-texto">Acesso à seleção exclusiva da American Express com upgrade de quarto, late checkout, wi-fi grátis e café da manhã para duas pessoas. Amenidades avaliadas em até US$ 100.</div>
+          </div>
+
+          <div class="sec-titulo">Locadoras de veículos</div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Elite Upgrade</div>
+            <div class="ben-texto">Upgrade de status automático na SIXT (Diamond) e na Hertz (President Circle).</div>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Hertz — President Circle</div>
+            <ul class="ben-lista">
+              <li>Membro Gold Plus Rewards com estatuto President Circle automático</li>
+              <li>Status 5 estrelas no Hertz Golden Rewards</li>
+              <li>Até 15% de desconto nas melhores tarifas e 25% no Hertz Prestige Collection</li>
+              <li>4 horas de locação sem carência e upgrade de carro sem custo (sujeito a disponibilidade)</li>
+              <li>Serviço de motorista adicional sem custo</li>
+            </ul>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">SIXT — Diamond Benefit</div>
+            <ul class="ben-lista">
+              <li>Até 20% de desconto em aluguéis</li>
+              <li>Balcão de atendimento exclusivo</li>
+              <li>Acesso gratuito ao estacionamento</li>
+              <li>Upgrade sem custo (sujeito a disponibilidade)</li>
+              <li>Pontos bônus em programas participantes</li>
+              <li>Serviço de motorista adicional sem custo para aluguéis nos EUA</li>
+              <li>Presente no aniversário</li>
+            </ul>
+          </div>
+
+          <div class="sec-titulo">Seguros e proteções em viagem</div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Despesas médicas</div>
+            <div class="ben-texto">Cobre despesas médicas, hospitalares e odontológicas em caso de acidente ou doença súbita durante viagens internacionais. Bilhete de seguro obrigatório.</div>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Consulta médica virtual</div>
+            <div class="ben-texto">Atendimento médico virtual durante viagens internacionais via smartphone ou tablet. Disponível para consultas de emergência não urgentes no exterior.</div>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Prorrogação de estadia</div>
+            <div class="ben-texto">Cobre diárias extras em caso de acidente ou doença súbita. Cobertura de até US$ 250/dia por no máximo 5 dias. Bilhete de seguro obrigatório.</div>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Acompanhante em hospitalização prolongada</div>
+            <div class="ben-texto">Cobre passagem aérea de ida e volta (até US$ 3.000) e estadia de até 5 dias em hotel para um acompanhante em caso de hospitalização coberta. Bilhete de seguro obrigatório.</div>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Benefício diário em hospitalização no exterior</div>
+            <div class="ben-texto">Fornece benefício financeiro por dia de hospitalização por acidente ou doença súbita. Válido por no máximo 30 dias. Bilhete de seguro obrigatório.</div>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Seguro de acidentes em viagem</div>
+            <div class="ben-texto">Seguro de vida ou desmembramento acidental durante traslado em transporte comum (avião, trem, navio ou ônibus). Cobertura de US$ 500.000. O custo total da tarifa deve ser pago com o cartão. Bilhete de seguro necessário.</div>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Proteção de bagagem</div>
+            <div class="ben-texto">Reembolso de itens essenciais em caso de bagagem perdida (até US$ 3.000), desde que a tarifa tenha sido paga com o cartão. Bilhete de seguro necessário.</div>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Cancelamento de viagem</div>
+            <div class="ben-texto">Reembolso de despesas pré-pagas não reembolsáveis em caso de cancelamento por evento coberto (até US$ 1.000). Bilhete de seguro obrigatório.</div>
+          </div>
+
+          <div class="sec-titulo">Proteção de compras</div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Garantia estendida original</div>
+            <div class="ben-texto">Dobra a garantia do fabricante (por até 1 ano) em produtos elegíveis comprados inteiramente com o cartão. Cobertura de até US$ 5.000 por ocorrência e US$ 25.000 por ano. Bilhete de seguro necessário.</div>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Seguro de aluguel de carros</div>
+            <div class="ben-texto">Cobertura em caso de danos físicos ou roubo ao carro alugado, com custo total pago com o cartão. Não inclui danos a terceiros.</div>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Assistência em viagem 24h</div>
+            <div class="ben-texto">Linha direta para emergências em viagem, disponível 24h. Fornece também informações pré-viagem sobre vistos, passaportes, vacinas e outros requisitos.</div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <footer>Gestora de Milhas Executivas™ · by Bruna Araújo · @eujuntomilhas</footer>
+
+  <script>
+    function toggleAcordeao(btn) {
+      const corpo = btn.nextElementSibling;
+      const aberto = corpo.classList.contains('aberto');
+      btn.classList.toggle('aberto', !aberto);
+      corpo.classList.toggle('aberto', !aberto);
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XP Legacy Visa Infinite · Benefícios · Rosana Pestana</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabriela&family=Caveat:wght@400;600&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --verde-musgo:  #4F6F52;
+      --verde-salvia: #8FAF9A;
+      --terracota:    #D97A3A;
+      --ambar:        #E6A15A;
+      --offwhite:     #F4F1EC;
+      --texto:        #1e1e1e;
+      --ouro:         #C9A84C;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--offwhite);
+      color: var(--texto);
+      font-family: 'Roboto', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 48px 24px 80px;
+    }
+
+    .voltar {
+      align-self: flex-start;
+      max-width: 760px;
+      width: 100%;
+      margin: 0 auto 36px;
+    }
+    .voltar a {
+      font-size: 0.82rem;
+      color: var(--verde-musgo);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    .voltar a:hover { opacity: 1; }
+
+    .conteudo { width: 100%; max-width: 760px; display: flex; flex-direction: column; gap: 24px; }
+
+    .card-principal {
+      background: #fff;
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+    }
+
+    .card-header {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .cartao-num-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      background: var(--texto);
+      color: #fff;
+      border-radius: 12px;
+      font-family: 'Gabriela', serif;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .card-info { flex: 1; min-width: 200px; }
+
+    .card-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      background: var(--texto);
+      color: #fff;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .card-nome {
+      font-family: 'Gabriela', serif;
+      font-size: 1.25rem;
+      color: var(--texto);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .estrelas { color: var(--ouro); font-size: 1rem; margin-bottom: 4px; letter-spacing: 2px; }
+    .score { font-size: 0.82rem; color: #9ab09e; }
+
+    .ficha {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(0,0,0,0.06);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .ficha-item { background: var(--offwhite); padding: 14px 16px; }
+    .ficha-label { font-size: 0.72rem; font-weight: 700; color: #9ab09e; margin-bottom: 4px; }
+    .ficha-valor { font-size: 0.85rem; font-weight: 700; color: var(--texto); line-height: 1.3; }
+
+    .acordeao {
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+
+    .acordeao-btn {
+      width: 100%;
+      background: #fff;
+      border: none;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-family: 'Roboto', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--texto);
+      transition: background 0.15s;
+    }
+
+    .acordeao-btn:hover { background: var(--offwhite); }
+
+    .acordeao-icon {
+      font-size: 1.3rem;
+      color: var(--verde-musgo);
+      transition: transform 0.25s;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .acordeao-btn.aberto .acordeao-icon { transform: rotate(45deg); }
+    .acordeao-corpo { display: none; padding: 0 20px 20px; background: #fff; }
+    .acordeao-corpo.aberto { display: block; }
+
+    .sec-titulo {
+      font-family: 'Caveat', cursive;
+      font-size: 1.05rem;
+      color: var(--terracota);
+      margin: 20px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sec-titulo::after { content: ''; flex: 1; height: 1px; background: rgba(217,122,58,0.2); }
+
+    .pontuacao-grid { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 4px; }
+
+    .pont-item {
+      background: var(--offwhite);
+      border-radius: 10px;
+      padding: 12px 18px;
+      flex: 1;
+      min-width: 130px;
+      text-align: center;
+    }
+
+    .pont-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #9ab09e; margin-bottom: 6px; }
+    .pont-valor { font-family: 'Gabriela', serif; font-size: 1.5rem; color: var(--terracota); }
+    .pont-desc { font-size: 0.72rem; color: #9ab09e; }
+
+    .info-lista { display: flex; flex-direction: column; gap: 8px; margin-bottom: 4px; }
+    .info-row { display: flex; align-items: flex-start; gap: 10px; font-size: 0.86rem; line-height: 1.5; }
+    .info-row .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--terracota); flex-shrink: 0; margin-top: 6px; }
+    .info-row .info-text { color: #3a3a3a; }
+    .info-row .info-label { font-weight: 700; color: var(--texto); margin-right: 4px; }
+
+    .sala-item { background: var(--offwhite); border-radius: 10px; padding: 12px 16px; margin-bottom: 8px; }
+    .sala-nome { font-weight: 700; font-size: 0.88rem; color: var(--texto); margin-bottom: 3px; }
+    .sala-desc { font-size: 0.8rem; color: #5a5a5a; line-height: 1.5; }
+
+    .ficha-detalhe { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 4px; }
+    .fd-item { background: var(--offwhite); border-radius: 10px; padding: 12px 16px; }
+    .fd-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: #9ab09e; margin-bottom: 4px; }
+    .fd-valor { font-size: 0.86rem; font-weight: 600; color: var(--texto); line-height: 1.4; }
+
+    .beneficio-bloco { margin-bottom: 18px; }
+    .ben-titulo { font-weight: 700; font-size: 0.9rem; color: var(--verde-musgo); margin-bottom: 6px; }
+    .ben-texto { font-size: 0.84rem; line-height: 1.7; color: #3a3a3a; }
+
+    .ben-lista { margin-top: 6px; padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 5px; }
+    .ben-lista li { font-size: 0.83rem; color: #3a3a3a; line-height: 1.5; padding-left: 14px; position: relative; }
+    .ben-lista li::before { content: '·'; position: absolute; left: 0; color: var(--terracota); font-weight: 700; }
+
+    .destaque-box {
+      background: rgba(217,122,58,0.07);
+      border-left: 3px solid var(--terracota);
+      border-radius: 0 10px 10px 0;
+      padding: 12px 16px;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: #3a3a3a;
+      margin: 8px 0;
+    }
+
+    footer {
+      margin-top: 56px;
+      font-family: 'Caveat', cursive;
+      font-size: 1rem;
+      color: #b5c9b8;
+      text-align: center;
+    }
+
+    @media (max-width: 560px) {
+      .ficha { grid-template-columns: repeat(2, 1fr); }
+      .card-header { flex-direction: column; }
+      .cartao-img { width: 100%; height: 140px; }
+      .ficha-detalhe { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="voltar">
+    <a href="aula3.html">← Voltar à Aula 3</a>
+  </div>
+
+  <div class="conteudo">
+    <div class="card-principal">
+
+      <div class="card-header">
+        <div class="cartao-num-badge">2</div>
+        <div class="card-info">
+          <div class="card-num">2</div>
+          <div class="card-nome">XP Visa Infinite Legacy</div>
+          <div class="estrelas">★★★★☆</div>
+          <div class="score">Maior pontuação bruta em gastos internacionais</div>
+        </div>
+      </div>
+
+      <div class="ficha">
+        <div class="ficha-item">
+          <div class="ficha-label">Anuidade</div>
+          <div class="ficha-valor">R$ 4.200</div>
+        </div>
+        <div class="ficha-item">
+          <div class="ficha-label">Pontuação</div>
+          <div class="ficha-valor">Até 9,5 pts/dólar</div>
+        </div>
+        <div class="ficha-item">
+          <div class="ficha-label">Salas VIP</div>
+          <div class="ficha-valor">Sim</div>
+        </div>
+        <div class="ficha-item">
+          <div class="ficha-label">Bandeira</div>
+          <div class="ficha-valor">Visa Infinite</div>
+        </div>
+      </div>
+
+      <!-- ACORDEÃO 1: BENEFÍCIOS DO CARTÃO -->
+      <div class="acordeao">
+        <button class="acordeao-btn" onclick="toggleAcordeao(this)">
+          Benefícios do cartão
+          <span class="acordeao-icon">+</span>
+        </button>
+        <div class="acordeao-corpo">
+
+          <div class="sec-titulo">Pontuação</div>
+          <div class="pontuacao-grid">
+            <div class="pont-item">
+              <div class="pont-label">Gasto no Brasil</div>
+              <div class="pont-valor">3,0</div>
+              <div class="pont-desc">pontos por dólar</div>
+            </div>
+            <div class="pont-item">
+              <div class="pont-label">Gasto no exterior</div>
+              <div class="pont-valor">9,5</div>
+              <div class="pont-desc">pontos por dólar</div>
+            </div>
+          </div>
+
+          <div class="sec-titulo">Bônus de adesão</div>
+          <div class="info-lista">
+            <div class="info-row"><div class="dot"></div><div class="info-text">Não há</div></div>
+          </div>
+
+          <div class="sec-titulo">Salas VIP</div>
+          <div class="sala-item">
+            <div class="sala-nome">Visa Airport Companion</div>
+            <div class="sala-desc">Acessos ilimitados para o titular + 12 acompanhantes gratuitos por ano</div>
+          </div>
+
+          <div class="sec-titulo">Programa de fidelidade</div>
+          <div class="info-lista">
+            <div class="info-row"><div class="dot"></div><div class="info-text">Livelo</div></div>
+          </div>
+
+          <div class="sec-titulo">Validade dos pontos</div>
+          <div class="info-lista">
+            <div class="info-row"><div class="dot"></div><div class="info-text">Não expiram</div></div>
+          </div>
+
+          <div class="sec-titulo">Informações do cartão</div>
+          <div class="ficha-detalhe">
+            <div class="fd-item">
+              <div class="fd-label">Adicionais com mesmos benefícios</div>
+              <div class="fd-valor">Sim</div>
+            </div>
+            <div class="fd-item">
+              <div class="fd-label">Cartões adicionais gratuitos</div>
+              <div class="fd-valor">4</div>
+            </div>
+            <div class="fd-item">
+              <div class="fd-label">Isenção de anuidade</div>
+              <div class="fd-valor">100% para investimentos acima de R$ 3 mi ou faturas a partir de R$ 40 mil</div>
+            </div>
+            <div class="fd-item">
+              <div class="fd-label">Carteiras digitais</div>
+              <div class="fd-valor">Apple Pay · Google Pay · Samsung Pay</div>
+            </div>
+            <div class="fd-item">
+              <div class="fd-label">Spread do dólar</div>
+              <div class="fd-valor">5,0%</div>
+            </div>
+            <div class="fd-item">
+              <div class="fd-label">Precisa ser correntista?</div>
+              <div class="fd-valor">Sim</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ACORDEÃO 2: BENEFÍCIOS DA BANDEIRA -->
+      <div class="acordeao">
+        <button class="acordeao-btn" onclick="toggleAcordeao(this)">
+          <span>Benefícios da bandeira · Visa Infinite <a href="https://www.xpi.com.br/produtos/cartao-xp-legacy/" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="font-size:0.72rem; font-weight:700; color:var(--terracota); text-decoration:none; margin-left:10px; letter-spacing:0.04em;">Ver no site XP ↗</a></span>
+          <span class="acordeao-icon">+</span>
+        </button>
+        <div class="acordeao-corpo">
+
+          <div class="sec-titulo">Viagens</div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Atraso de bagagem</div>
+            <div class="ben-texto">Cobertura para o titular e acompanhantes em caso de bagagem não chegar ao destino final, ao comprar passagens com o cartão. Bilhete Seguro deve ser emitido pelo site.</div>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Atraso de embarque ampliada</div>
+            <div class="ben-texto">Indenização para o titular e acompanhantes em caso de atraso da viagem superior a 4 horas, desde que o motivo esteja coberto pelo seguro.</div>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Cancelamento de viagem ampliada</div>
+            <div class="ben-texto">Cobertura para despesas não reembolsáveis e acomodação em caso de cancelamento por motivos cobertos, ao comprar passagens com o cartão.</div>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Perda de conexão</div>
+            <div class="ben-texto">Cobre despesas ocasionadas por perda de conexão quando o titular e acompanhantes não chegam ao destino final no horário programado por circunstâncias imprevisíveis.</div>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Perda ou roubo de bagagem</div>
+            <div class="ben-texto">Cobre despesas caso a bagagem despachada seja considerada irrecuperável quando sob responsabilidade da companhia de transporte.</div>
+          </div>
+
+          <div class="sec-titulo">Salas VIP</div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Priority Pass</div>
+            <div class="ben-texto">Acesso a salas VIP em aeroportos do Brasil e do mundo. No Brasil, somente Porto Seguro e BRB oferecem este benefício atualmente — consultar o emissor.</div>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">LoungeKey</div>
+            <div class="ben-texto">Acesso a mais de 850 salas VIP em aeroportos do Brasil e do mundo. Necessário cadastro no programa — o acesso pode ser pago ou gratuito conforme a instituição financeira.</div>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Visa Airport Companion</div>
+            <div class="ben-texto">App com acesso ao ecossistema de aeroportos: salas VIP, restaurantes, lojas, transporte e outros serviços com descontos e benefícios para portadores Visa Infinite.</div>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Visa Infinite Fast Pass · GRU Airport</div>
+            <div class="ben-texto">Fila exclusiva para verificação de segurança (raio-x) no Aeroporto de Guarulhos — terminal 2 (doméstico) e terminal 3 (internacional). Válido para o titular e até 5 acompanhantes. É necessário gerar um QR Code pelo app Visa Airport Companion com validade de 12 horas.</div>
+          </div>
+
+          <div class="sec-titulo">Assistência médica em viagem</div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Seguro Emergência Médica Internacional</div>
+            <div class="ben-texto">Proteção contra acidentes ou emergências médicas fora do Brasil para o titular, cônjuge e filhos, ao pagar integralmente as passagens com o cartão. Bilhete seguro deve ser emitido online antes da viagem.</div>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Visa Médico Online</div>
+            <div class="ben-texto">Consulta médica virtual para portadores fora do país de residência, em casos de baixa complexidade, como complemento ao seguro médico internacional.</div>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Seguro para veículos de locadora</div>
+            <div class="ben-texto">Proteção gratuita contra roubo ou danos cobertos ao veículo alugado em qualquer país do mundo, ao pagar a locação com o cartão Visa Infinite.</div>
+          </div>
+
+          <div class="sec-titulo">Assistência e emergências</div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Central de Atendimento Visa · 24h</div>
+            <div class="ben-texto">Atendimento 24h no idioma de preferência para localizar caixa automático mais próximo, solicitar cartão ou saque emergencial.</div>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Saque Emergencial</div>
+            <div class="ben-texto">Permite realizar saque emergencial em diversos lugares do mundo em caso de roubo ou furto. Basta contatar a central.</div>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Substituição Emergencial de Cartão</div>
+            <div class="ben-texto">Possibilidade de receber um cartão emergencial em diversos lugares do mundo em caso de extravio ou roubo.</div>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Assistência em viagem</div>
+            <div class="ben-texto">Informações sobre destinos, passaporte, visto, vacinas, mapas, taxas de câmbio e localização de caixas automáticos via Central Visa Infinite.</div>
+          </div>
+
+          <div class="sec-titulo">Proteção de compras</div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Garantia Estendida Original</div>
+            <div class="ben-texto">Estende a garantia original do fabricante por até 1 ano, sem necessidade de registro, para itens elegíveis comprados integralmente com o cartão. O item deve ter garantia mínima de 3 meses e inferior a 3 anos.</div>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Proteção de Preços</div>
+            <div class="ben-texto">Se o mesmo item for encontrado por preço inferior em até 30 dias da compra, o valor da diferença é compensado. Sem necessidade de registro.</div>
+          </div>
+
+          <div class="sec-titulo">Concierge e experiências</div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Visa Concierge</div>
+            <div class="ben-texto">Assistente pessoal para reservas de hotéis e restaurantes, confirmação de voo, auxílio com bagagem extraviada, compras especiais e entretenimento. Atendimento via telefone.</div>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Visa Luxury Hotel Collection</div>
+            <div class="ben-texto">Programa com os mais exclusivos hotéis e resorts do mundo para clientes Visa Infinite, com serviços exclusivos e experiências únicas em cada propriedade.</div>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Priceless Cities / Vai de Visa</div>
+            <div class="ben-texto">Descontos e condições especiais em estabelecimentos no Brasil e no mundo. Acesse a plataforma Vai de Visa para conferir as opções disponíveis.</div>
+          </div>
+
+          <div class="beneficio-bloco">
+            <div class="ben-titulo">Visa Checkout</div>
+            <div class="ben-texto">Cadastro do cartão na plataforma para facilitar pagamentos online, sem necessidade de inserir os dados a cada nova compra.</div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>Gestora de Milhas Executivas™ · by Bruna Araújo · @eujuntomilhas</footer>
+
+  <script>
+    function toggleAcordeao(btn) {
+      const corpo = btn.nextElementSibling;
+      const aberto = corpo.classList.contains('aberto');
+      btn.classList.toggle('aberto', !aberto);
+      corpo.classList.toggle('aberto', !aberto);
+    }
+  </script>
+
+</body>
+</html>
